@@ -1,0 +1,169 @@
+{% extends "dipp/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+
+
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">DASHBOARD</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-8">
+                          <!--collapse for action points-->
+                          <h3 class="text-center">Action Points</h3>
+                          <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                              Action point 1</a>
+                            </h4>
+                          </div>
+                          <div id="collapse1" class="panel-collapse collapse in">
+                            <div  class="panel-body" class="summernote">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                            <button id="edit" class="btn btn-primary" onclick="edit()" type="button">Edit</button>
+                            <button id="save" class="btn btn-primary" onclick="save()" type="button">Save</button>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                              Action point 2</a>
+                            </h4>
+                          </div>
+                          <div id="collapse2" class="panel-collapse collapse">
+                            <div id="summernote1" class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                            <button id="edit2" class="btn btn-primary" onclick="edit()" type="button">Edit</button>
+                            <button id="save" class="btn btn-primary" onclick="save()" type="button">Save</button>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                              Action point 3</a>
+                            </h4>
+                          </div>
+                          <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                            <button id="edit3" class="btn btn-primary" onclick="edit()" type="button">Edit</button>
+                            <button id="save" class="btn btn-primary" onclick="save()" type="button">Save</button>
+                          </div>
+                        </div>
+                      </div>
+
+                          <!--end-->
+                      </div>
+                      <!--notifications-->
+                      <div class="col-lg-4">
+                              <div class="panel panel-default">
+                                  <div class="panel-heading">
+                                      <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                                  </div>
+                                  <!-- /.panel-heading -->
+                                  <div class="panel-body">
+                                      <div class="list-group">
+                                          <a href="#" class="list-group-item">
+                                              <i class="fa fa-comment fa-fw"></i> New Comment
+                                                  <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                                  </span>
+                                          </a>
+                                          <a href="#" class="list-group-item">
+                                              <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                                  <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                                  </span>
+                                          </a>
+                                          <a href="#" class="list-group-item">
+                                              <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                                  <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                                  </span>
+                                          </a>
+                                          <a href="#" class="list-group-item">
+                                              <i class="fa fa-tasks fa-fw"></i> New Task
+                                                  <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                                  </span>
+                                          </a>
+                                          <a href="#" class="list-group-item">
+                                              <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                                  <span class="pull-right text-muted small"><em>11:32 AM</em>
+                                                  </span>
+                                          </a>
+                                          <a href="#" class="list-group-item">
+                                              <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+                                                  <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                                  </span>
+                                          </a>
+                                          <a href="#" class="list-group-item">
+                                              <i class="fa fa-warning fa-fw"></i> Server Not Responding
+                                                  <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                                  </span>
+                                          </a>
+                                          <a href="#" class="list-group-item">
+                                              <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
+                                                  <span class="pull-right text-muted small"><em>9:49 AM</em>
+                                                  </span>
+                                          </a>
+                                          <a href="#" class="list-group-item">
+                                              <i class="fa fa-money fa-fw"></i> Payment Received
+                                                  <span class="pull-right text-muted small"><em>Yesterday</em>
+                                                  </span>
+                                          </a>
+                                      </div>
+                                      <!-- /.list-group -->
+                                      <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                                  </div>
+                                  <!-- /.panel-body -->
+                              </div>
+
+                      <!-- end notificatioon-->
+
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+
+
+            <!-- summernote script -->
+            <script>
+
+                  var edit = function() {
+                    $('#summernote').summernote({focus: true});
+                  };
+
+                  var save = function() {
+                    var markup = $('#summernote').summernote('code');
+                    $('#summernote').summernote('destroy');
+                    };
+
+                    $('.summernote').summernote({
+                        airMode: true
+                      });
+
+                </script>
+
+
+
+
+
+  {% endblock %}

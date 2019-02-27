@@ -1,0 +1,306 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>DIPP Dashboard</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="{% static 'dipp/css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <!-- MetisMenu CSS -->
+        <link href="{% static 'dipp/css/metisMenu.min.css' %}" rel="stylesheet">
+
+        <!-- Timeline CSS -->
+        <link href="{% static 'dipp/css/timeline.css' %}" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="{% static 'dipp/css/startmin.css' %}" rel="stylesheet">
+
+        <!-- Morris Charts CSS -->
+        <link href="{% static 'dipp/css/morris.css' %}" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="{% static 'dipp/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse " role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="">Startmin</a>
+                </div>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <ul class="nav navbar-nav navbar-left navbar-top-links">
+                    <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+                </ul>
+
+                <ul class="nav navbar-right navbar-top-links">
+                    <li class="dropdown navbar-inverse">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-comment fa-fw"></i> New Comment
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                        <span class="pull-right text-muted small">12 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-tasks fa-fw"></i> New Task
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center" href="#">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+
+                                    <span class="input-group-btn">
+                                        <div id="google_translate_element"></div>
+
+                                </span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li>
+                                <a href="{% url 'dipp_home' %}" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Add User<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                  <li>
+                                      <a href="{% url 'add_dept' %}"><i class="fa fa-plus-square fa-fw"></i>Add Departments</a>
+                                  </li>
+                                  <li>
+                                      <a href="{% url 'add_sh' %}"><i class="fa fa-plus-square fa-fw"></i>Add StakeHolders</a>
+                                  </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Monitary meeting<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+
+                                  <li>
+                                      <a href="{% url 'add_monitory_meeting' %}"><i class="fa fa-plus-square fa-fw"></i>Add monitory Meetings</a>
+                                  </li>
+                                  <li>
+                                    <a href="{% url 'view_upcoming_meetings_action' %}"><i class="fa fa-asterisk fa-fw"></i>Upcoming Monitoring Meetings</a>
+                                  </li>
+                                  <li>
+                                      <a href="{% url 'view_prev_meeting' %}"><i class="fa fa-file-word-o fa-fw"></i>Monitary Meetings with minutes</a>
+                                  </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>  meeting<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                  <li>
+                                      <a href="{% url 'add_meeting' %}"><i class="fa fa-file-word-o fa-fw"></i>Plan a meeting </a>
+                                  </li>
+
+                                  <li>
+                                      <a href="{% url 'view_upcoming_normalmeetings' %}"><i class="fa fa-asterisk fa-fw"></i>Upcoming Meetings</a>
+                                  </li>
+
+
+                                  <li>
+                                        <a href="{% url 'view_prev_normalmeeting' %}"><i class="fa fa-asterisk fa-fw"></i>Previous Meetings with minutes</a>
+                                  </li>
+
+
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Status Report<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                  <li>
+                                      <a href="{% url 'add_status_report' %}"><i class="fa fa-asterisk fa-fw"></i>Add Status report</a>
+                                  </li>
+                                  <li>
+
+                                      <a href="{% url 'view_status_report' %}"><i class="fa fa-asterisk fa-fw"></i>View Status report</a>
+                                  </li>
+
+
+
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+
+
+
+                            <li>
+                              <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Notifications<span class="fa arrow"></span></a>
+                              <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{% url 'notify' %}"><i class="fa fa-asterisk fa-fw"></i>Notify</a>
+                                </li>
+                                <li>
+
+                                    <a href="{% url 'view_notification' %}"><i class="fa fa-asterisk fa-fw"></i>View Notifications</a>
+                                </li>
+
+
+                             </ul>
+                                                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                          <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Target and Progress<span class="fa arrow"></span></a>
+                          <ul class="nav nav-second-level">
+                            <li><a href="{% url 'add_target' %}"><i class="fa fa-asterisk fa-fw"></i>Add Target</a></li>
+                            <li><a href="{% url 'view_past_target' %}"><i class="fa fa-asterisk fa-fw"></i>View Past Targets</a></li>
+                            <li><a href="{% url 'view_current_target' %}"><i class="fa fa-asterisk fa-fw"></i>View Current Targets</a></li>
+                         </ul>
+                                                        <!-- /.nav-second-level -->
+                    </li>
+                    <li><a href="{% url 'show_ranking' %}"><i class="fa fa-asterisk fa-fw"></i>Show Ranking</a></li>
+                    <li>
+                          <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Analysis<span class="fa arrow"></span></a>
+                          <ul class="nav nav-second-level">
+                            <li><a href="{% url 'view_target_analysis' %}"><i class="fa fa-asterisk fa-fw"></i>Target wise</a></li>
+                            <li><a href="{% url 'view_achievement_analysis' %}"><i class="fa fa-asterisk fa-fw"></i>Achievement/Delay wise</a></li>
+                            <li><a href="{% url 'view_feedback_analysis' %}"><i class="fa fa-asterisk fa-fw"></i>Feedback wise</a></li>
+                            <li><a href="{% url 'view_ap_analysis' %}"><i class="fa fa-asterisk fa-fw"></i>ActionPoint wise</a></li>
+                            <li><a href="{% url 'view_comparision_analysis' %}"><i class="fa fa-asterisk fa-fw"></i>Comaprision</a></li>
+                         </ul>
+                                                        <!-- /.nav-second-level -->
+                    </li>
+
+                    <li>
+
+                        <a href="{% url 'logout' %}"><i class="fa fa-asterisk fa-fw"></i>Logout</a>
+                    </li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+
+
+            <!-- main content  -->
+            {% block content %}
+            {% endblock %}
+            <!-- end main content-->
+
+            <script src="{% static 'dipp/js/jquery.min.js' %}"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="{% static 'dipp/js/bootstrap.min.js' %}"></script>
+
+            <!-- Metis Menu Plugin JavaScript -->
+            <script src="{% static 'dipp/js/metisMenu.min.js' %}"></script>
+
+            <!-- DataTables JavaScript -->
+            <script src="{% static 'dipp/js/dataTables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'dipp/js/dataTables/dataTables.bootstrap.min.js' %}"></script>
+
+            <!-- Custom Theme JavaScript -->
+            <script src="{% static 'dipp/js/startmin.js' %}"></script>
+
+
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+            </script>
+
+            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+            {% block datatable_add %}
+            {% endblock %}
+
+
+
+
+
+            <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
+        </body>
+    </html>

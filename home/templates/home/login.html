@@ -1,0 +1,19 @@
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'home/css/login.css' %}">
+<div class="login-wrap">
+  <h2>Login</h2>
+
+  <div class="form">
+    <form class="" action="{% url 'login_action' %}" method="post">
+      {% csrf_token %}
+
+      <input type="text" placeholder="Username" name="id" required/>
+      <input type="password" placeholder="Password" name="password" required/>
+      <button> Sign in </button>
+      <a href="#"> <p> Don't have an account? Register </p></a>
+    </form>
+
+  </div>
+</div>
