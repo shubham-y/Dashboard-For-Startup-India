@@ -22,5 +22,7 @@ urlpatterns=[
     path('view_comparision_analysis/',views.view_comparision_analysis_stk,name='view_comparision_analysis_stk'),
     path('view_feedback_analysis/',views.view_feedback_analysis_stk,name='view_feedback_analysis_stk'),
     path('view_ap_analysis/',views.view_ap_analysis_stk,name='view_ap_analysis_stk'),
+    path('download_ap_sh/',views.download_ap_sh,name='download_ap_sh'),
+    path('view_dept_summary/',views.view_dept_summary,name='view_dept_summary'),
 
 ]

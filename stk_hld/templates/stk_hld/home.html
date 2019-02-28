@@ -9,15 +9,20 @@
                         <div class="col-lg-12">
                             <h1 class="page-header">STAKEHOLDER NAME</h1>
                         </div>
+                        <br>
+                        <br>
                         <!-- /.col-lg-12 -->
                     </div>
 
                     <div class="row">
                           <!--collapse for action points-->
-                    <h3><a href="{% url 'stk_hld_home' %}">Action Points</a></h3>
-                    <div class="col-lg-8">
-                      {% for m,val,j,k in main %}
 
+                    <div class="col-lg-8">
+                      <h3>Action Points</h3>
+                      <br>
+                      <ul>
+                      {% for m,val,j,k in main %}
+                      <li>
                           <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                           <div class="panel-heading">
@@ -79,8 +84,9 @@
                         </div>
 
 
-
+                  </li>
                 {% endfor %}
+                </ul>
                     </div>
 
                       <!--notifications-->
@@ -146,6 +152,7 @@
 
                       <!-- end notificatioon-->
 
+                    </div>
                     </div>
 
   {% endblock %}

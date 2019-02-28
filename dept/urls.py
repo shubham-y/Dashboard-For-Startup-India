@@ -22,6 +22,8 @@ urlpatterns=[
     path('view_feedback_analysis/',views.view_feedback_analysis_dept,name='view_feedback_analysis_dept'),
     path('view_ap_analysis/',views.view_ap_analysis_dept,name='view_ap_analysis_dept'),
     path('chart/',views.chart,name='chart'),
+    path('download_ap/',views.download_ap,name='download_ap'),
+
 ]
 
 # Url kept similar to dipp app

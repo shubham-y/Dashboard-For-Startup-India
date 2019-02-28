@@ -1,0 +1,99 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+<body>
+<div class="container-fluid">
+<div>
+<button class="btn btn-dark align-right" id="cmd">Download</button>
+
+
+</div>
+
+<br><br>
+
+<div class="row d-flex justify-content-center">
+
+  <div class="col-sm-12" id="content1">
+
+      <h1 class="display-3 text-center my-4">Action Points</h1>
+
+{% for actionpoint in ap %}
+
+<div class="card border-dark text-center">
+  <div class="card-header ">
+      <h2>{{actionpoint.action_no}}.{{actionpoint.action_name}}</h2>
+  </div>
+  <div class="card-body ">
+      <h4 class="card-title">{{actionpoint.action_objective}}</h4>
+      <br>
+      <p class="card-text"> {{actionpoint.action_description}}</p>
+  </div>
+  <div class="card-footer text-muted">
+    {{actionpoint.update_time}}
+  </div>
+</div>
+
+<br><br>
+
+{% endfor %}
+</div>
+
+</div>
+</div>
+</body>
+
+<script>
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+
+  // var w = document.getElementById("content1").offsetWidth;
+  // var h = document.getElementById("content1").offsetHeight;
+  // html2canvas(document.getElementById("content1"), {
+  //   dpi: 300, // Set to 300 DPI
+  //   scale: 3 // Adjusts your resolution
+  // }).then(canvas => {
+  //   var img = canvas.toDataURL("image/jpeg", 1);
+  //     var doc = new jsPDF('L', 'px', [w, h]);
+  //     doc.addImage(img, 'JPEG', 0, 0, w, h);
+  //     doc.save('sample-file.pdf');
+  // });
+
+
+  var w = document.getElementById("content1").offsetWidth;
+  var h = document.getElementById("content1").offsetHeight;
+  html2canvas(document.getElementById("content1")).then(canvas => {
+    var img = canvas.toDataURL("image/png");
+      var doc = new jsPDF('p', 'mm');
+      doc.addImage(img, 'PNG', 10, 10);
+      doc.save('sample-file.pdf');
+  });
+
+});
+</script>
+
+
+</html>

@@ -3,8 +3,19 @@
 
 
 {% block content %}
+
+<style>
+  .h:hover{
+    color:grey;
+  }
+  .h {
+    color:blue;
+  }
+</style>
+
+
 <div id="page-wrapper">
-                <div class="container-fluid">
+                <div class="container container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Upcoming meetings</h1>
@@ -48,7 +59,7 @@
                                                     <td>{{meeting.meeting_time}}</td>
                                                     <td>{{meeting.with_whom.dept_name}}</td>
                                                     <td><a  data-toggle="modal" data-target="{{j}}" >
-                                                          {{meeting.subject}}
+                                                          <span class="h" style"color:red;">{{meeting.subject}}</span>
                                                     </a></td>
 
                                                     <!-- Modal -->

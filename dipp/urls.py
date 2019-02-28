@@ -44,5 +44,7 @@ urlpatterns=[
     path('sort_by_date_vct/',views.sort_by_date_vct,name='sort_by_date_vct'),
     path('sort_by_date_vpt/',views.sort_by_date_vpt,name='sort_by_date_vpt'),
     path('sort_by_date_vsr_dipp/',views.sort_by_date_vsr_dipp,name='sort_by_date_vsr_dipp'),
+    path('download_ap_dipp/',views.download_ap_dipp,name='download_ap_dipp'),
+    path('dept_summary/',views.dept_summary,name='dept_summary'),
 
 ]

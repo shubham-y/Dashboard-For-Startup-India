@@ -285,32 +285,106 @@ def show_ranking_d(request):
             return render(request,'dept/show_ranking_d.html',{'l':l})
 
 def view_target_analysis_dept(request):
-    if 'dept_username' not in request.session:
-        return HttpResponseRedirect(reverse('login'))
-    else:
-        dataset = Target.objects \
-            .values('department') \
-            .annotate(completed_count=Count('department', filter=Q(status=1)),
-                      not_completed_count=Count('department', filter=Q(status=0)))
-        return render(request, 'dept/view_target_analysis.html', {'dataset': dataset})
+        dept=DeptOfficer.objects.all()
+        c=[]
+        t_a=[]
+        t_na=[]
+        for i in dept:
+            category={"label":i.dept_name}
+            t_achieved=Target.objects.filter(department_id=i.dept_loginid,status='1')
+            t_nachieved=Target.objects.filter(department_id=i.dept_loginid,status='0')
+            Delay=Notify.objects.filter(department=i.dept_name,type='Delay')
+            d3={"value":(len(t_achieved))}
+            d4={"value":(len(t_nachieved))}
+            print(d4)
+            t_a.append(d3)
+            t_na.append(d4)
+            c.append(category)
+
+    #jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+        p={
+                "chart": {
+                "caption": "Target (Completed vs pending)",
+                "xAxisName": "department",
+                "yAxisName" : "total number",
+                "formatnumberscale": "1",
+                "drawCrossLine":"1",
+                "plotToolText" : "<b>$dataValue</b> apps on $seriesName in $label",
+                "theme": "fusion"
+                },
+
+
+                "categories": [{
+                "category": c
+                }],
+                "dataset": [ {
+                "seriesname": "Target Achieved",
+                "data":  t_a
+                }, {
+                "seriesname": "Target Not Achieved",
+                "data":  t_na
+                }]
+                }
+
+
+        p1=json.dumps(p)
+
+
+        mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
+        return render(request, 'dept/feedback_analysis.html', {'output': mscol2D.render(), 'chartTitle': 'Multiseries Column 2D Chart'})
+
+
 
 def view_achievement_analysis_dept(request):
-    if 'dept_username' not in request.session:
-        return HttpResponseRedirect(reverse('login'))
-    else:
-        dataset = Notify.objects \
-            .values('department') \
-            .annotate(completed_count=Count('department', filter=Q(type='Achievement')),
-                      not_completed_count=Count('department', filter=Q(type='Delay')))
-        print(dataset)
-        return render(request, 'dept/view_achievement_analysis.html', {'dataset': dataset})
 
-# def view_feedback_analysis(request):
-#     dataset = Ranking.objects \
-#         .values('dept_loginid_id') \
-#         .annotate(completed_count=Count('dept_loginid_id', filter=Q(score2='')))
-#     print(dataset)
-#     return render(request, 'dipp/view_target_analysis.html', {'dataset': dataset})
+        dept=DeptOfficer.objects.all()
+        c=[]
+        d=[]
+        a=[]
+        for i in dept:
+            category={"label":i.dept_name}
+            Achievements=Notify.objects.filter(department=i.dept_name,type='Achievement')
+            Delay=Notify.objects.filter(department=i.dept_name,type='Delay')
+            d3={"value":(len(Achievements))}
+            d4={"value":(len(Delay))}
+            a.append(d3)
+            d.append(d4)
+            c.append(category)
+
+    #jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+        p={
+                "chart": {
+                "caption": "Achievement vs delay",
+                "xAxisName": "department",
+                "yAxisName" : "total number",
+                "formatnumberscale": "1",
+                "drawCrossLine":"1",
+                "plotToolText" : "<b>$dataValue</b> apps on $seriesName in $label",
+                "theme": "fusion"
+                },
+
+
+                "categories": [{
+                "category": c
+                }],
+                "dataset": [ {
+                "seriesname": "Achievement",
+                "data":  a
+                }, {
+                "seriesname": "Delay",
+                "data":  d
+                }]
+                }
+
+
+        p1=json.dumps(p)
+
+
+        mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
+        return render(request, 'dept/feedback_analysis.html', {'output': mscol2D.render(), 'chartTitle': 'Multiseries Column 2D Chart'})
+
+
+
 
 def view_comparision_analysis_dept(request):
     if 'dept_username' not in request.session:
@@ -502,3 +576,12 @@ def chart(request):
     column2D = FusionCharts("column2d", "ex1" , "600", "400", "chart-1", "json", dataSource)
 
     return  render(request, 'dept/chart.html', {'output' : column2D.render(), 'chartTitle': 'Simple Chart Using Array'})
+
+
+
+def download_ap(request):
+    if 'dept_username' not in request.session:
+        return HttpResponseRedirect(reverse('login'))
+    else:
+        ap=ActionPoints.objects.all()
+        return render(request,'dept/download_ap.html',{'ap':ap})

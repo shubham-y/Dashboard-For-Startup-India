@@ -20,9 +20,8 @@
 
   <form role="form" method="POST" action="{% url 'view_comparision_analysis_dept' %}">
     {% csrf_token %}
-    <div class="form-group">
       <div class="row">
-        <div class="col-sm-6">
+        <div class=" form-group col-sm-6">
           <label>Department Name(First)</label>
           <select class="form-control" name="department1" style="width:60%">
             {% for department in dept %}
@@ -31,7 +30,7 @@
 
           </select>
         </div>
-        <div class="col-sm-6">
+        <div class="form-group col-sm-6">
           <label>Department Name(Second)</label>
           <select class="form-control" name="department2" style="width:60%">
             {% for department in dept %}
@@ -40,15 +39,17 @@
 
           </select>
         </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary" align>Compare</button>
+        </div>
       </div>
     </div>
 
-      <div class="text-center">
-        <button type="submit" class="btn btn-default" align>Compare</button>
-      </div>
+
   </form>
     <!-- end form-->
 </div>
+
 
 
 <script type="text/javascript" src="{% static 'dipp/js/dynamic_input.js' %}"></script>
