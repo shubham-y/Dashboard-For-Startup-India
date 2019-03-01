@@ -570,7 +570,7 @@ def view_comparision_analysis(request):
     else:
         department = 'department_id__dept_name'
         d=DeptOfficer.objects.values('dept_name').distinct()
-        print(d)
+        print(467576)
         target=Target.objects.none()
         achievement=Notify.objects.none()
 
