@@ -7,6 +7,7 @@ from django.utils import timezone
 from dept.models import DeptOfficer,Feedback,Ranking
 from dipp.models import Monitoring_Meeting
 from dipp.models import StatusReport,ActionPoints,Notify,Target
+from stk_hld.models import StakeHolder
 from django.db.models import Max,Count,Q
 from dept.fusioncharts import FusionCharts
 from collections import OrderedDict
@@ -17,6 +18,8 @@ def stk_hld_home(request):
     if 'sh_username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     else:
+        userid=request.session['sh_username']
+        shname=StakeHolder.objects.get(stk_loginid=userid)
         main=[]
         ap=ActionPoints.objects.all()
         for i in range(1,len(ap)+1):
@@ -39,7 +42,7 @@ def stk_hld_home(request):
             k.append(e)
         m=zip(ap,j,k)
         main=zip(main,ap,j,k)
-        return render(request,'stk_hld/home.html',{'ap':m,'d':d,'main':main})
+        return render(request,'stk_hld/home.html',{'ap':m,'d':d,'main':main,'shname':shname})
 
 def view_monitoring_minutes(request):
 	if 'sh_username' not in request.session:

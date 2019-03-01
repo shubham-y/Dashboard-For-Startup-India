@@ -1,15 +1,11 @@
 {% load static %}
 <!DOCTYPE HTML>
-<!--
-	uBeasa by freshdesignweb.com
-	Twitter: https://twitter.com/freshdesignweb
-	URL: https://www.freshdesignweb.com
--->
+
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>STARTUP-INDIA</title>
+	<title>DASHBOARD by DPIIT</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by freshdesignweb.com" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -64,15 +60,15 @@
 		<div class="ubea-container">
 			<div class="row">
 				<div class="col-sm-3 col-xs-12">
-					<div id="ubea-logo"><a href="#">STARTUP <em>INDIA</em> </a></div>
+					<div id="ubea-logo"><a href="#">DASHBOARD by <em>DPIIT</em> </a></div>
 				</div>
 				<div class="col-xs-9 text-right menu-1 main-nav ">
 					<ul>
 						<li class="active"><a href="#" data-nav-section="home">Home</a></li>
-						<li><a href="#" data-nav-section="services">Services</a></li>
+				<!--		<li><a href="#" data-nav-section="services">Services</a></li>  -->
 						<li><a href="#" data-nav-section="portfolio">For Whom</a></li>
-            <li><a href="#" data-nav-section="about">About us</a></li>
-						<li><a href="#" data-nav-section="contact">Contact</a></li>
+            	<!--		<li><a href="#" data-nav-section="about">About us</a></li>   ->
+					<!--	<li><a href="#" data-nav-section="contact">Contact</a></li> -->
 						<li><a href="{% url 'login' %}" class="external">Login</a></li>
 
 					</ul>
@@ -85,35 +81,38 @@
 	<div id="ubea-hero" class="js-fullheight"  data-section="home">
 		<div class="flexslider js-fullheight">
 			<ul class="slides">
-		   	<li style="background-image: url('{% static 'home/img/img_bg_1.jpg' %}');">
+		   	<li style="background-image: url('{% static 'home/img/img_bg_1.png' %}');">
 		   		<div class="overlay"></div>
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2>Explore the new template.</h2>
-		   					<p><a href="#" target="_blank" class="btn btn-primary btn-lg">Get Started</a></p>
+		   					<h2>Department for Promotion of Industry and Internal Trade</h2>
+		   					<!--
+		   					<p><a href="#" target="_blank" class="btn btn-primary btn-lg">Get Started</a></p> -->
 		   				</div>
 		   			</div>
 		   		</div>
 		   	</li>
-		   	<li style="background-image: url('{% static 'home/img/img_bg_2.jpg' %}');">
+		   	<li style="background-image: url('{% static 'home/img/img_bg_2.png' %}');">
 		   		<div class="overlay"></div>
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2>Creative. Innovative.Intuitive.</h2>
-		   					<p><a href="#" class="btn btn-primary btn-lg">Get started</a></p>
+		   					<h2>Celebrating Innovation and Promoting Divergent Thinking.</h2>
+		   					<!--
+		   					<p><a href="#" class="btn btn-primary btn-lg">Get started</a></p> -->
 		   				</div>
 		   			</div>
 		   		</div>
 		   	</li>
-		   	<li style="background-image: url('{% static 'home/img/img_bg_3.jpg' %}');">
+		   	<li style="background-image: url('{% static 'home/img/img_bg_3.png' %}');">
 		   		<div class="overlay"></div>
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2>A new experience.</h2>
-		   					<p><a href="#" class="btn btn-primary btn-lg">Get started</a></p>
+		   					<h2>Zero Defect Zero Effect.</h2>
+		   					<!--
+		   					<p><a href="#" class="btn btn-primary btn-lg">Get started</a></p> -->
 		   				</div>
 		   			</div>
 		   		</div>
@@ -122,6 +121,7 @@
 	  	</div>
 	</div>
 
+<!--
 	<div class="ubea-section-overflow">
 
 		<div class="ubea-section" id="ubea-services" data-section="services">
@@ -214,6 +214,29 @@
 				</div>
 			</div>
 		</div>
+-->
+		<div class="ubea-section" id="ubea-portfolio" data-section="portfolio">
+			<div class="ubea-container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center ubea-heading">
+						<h2>DPIIT</h2>
+						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+					</div>
+				</div>
+				<div align=centre>
+				<div class="row">
+					<div class="col-md-12">
+						<a href="{% static 'home/img/img_bg_10.png' %}" class="ubea-card-item image-popup" title="DPIIT">
+							<figure>
+								<div class="overlay"><i class="ti-plus"></i></div>
+								<img src="{% static 'home/img/img_bg_10.png' %}" alt="DPIIT" class="img-responsive">
+							</figure>
+						</a>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
 
 		<div class="ubea-section" id="ubea-portfolio" data-section="portfolio">
 			<div class="ubea-container">
@@ -225,51 +248,51 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4">
-						<a href="{% static 'home/img/img_2.jpg' %}" class="ubea-card-item image-popup" title="Project name here.">
+						<a href="{% static 'home/img/dept_1.jpg' %}" class="ubea-card-item image-popup" title="Department of Human Resource and Development">
 							<figure>
 								<div class="overlay"><i class="ti-plus"></i></div>
-								<img src="{% static 'home/img/img_2.jpg' %}" alt="Image" class="img-responsive">
+								<img src="{% static 'home/img/dept_1.jpg' %}" alt="Department of Human Resource and Development" class="img-responsive">
 							</figure>
 						</a>
 					</div>
 					<div class="col-md-4">
-						<a href="{% static 'home/img/img_1.jpg' %}" class="ubea-card-item image-popup" title="Project name here.">
+						<a href="{% static 'home/img/dept_2.jpg' %}" class="ubea-card-item image-popup" title="Department of Biotechnology">
 							<figure>
 								<div class="overlay"><i class="ti-plus"></i></div>
-								<img src="{% static 'home/img/img_1.jpg' %}" alt="Image" class="img-responsive">
+								<img src="{% static 'home/img/dept_2.jpg' %}" alt="Department of Biotechnology" class="img-responsive">
 							</figure>
 						</a>
 					</div>
 					<div class="col-md-4">
-						<a href="{% static 'home/img/img_3.jpg' %}" class="ubea-card-item image-popup" title="Project name here.">
+						<a href="{% static 'home/img/dept_3.png' %}" class="ubea-card-item image-popup" title="Department of Science and Technology">
 							<figure>
 								<div class="overlay"><i class="ti-plus"></i></div>
-								<img src="{% static 'home/img/img_3.jpg' %}" alt="Image" class="img-responsive">
+								<img src="{% static 'home/img/dept_3.png' %}" alt="Department of Science and Technology" class="img-responsive">
 							</figure>
 						</a>
 					</div>
 
 					<div class="col-md-4">
-						<a href="{% static 'home/img/img_4.jpg' %}" class="ubea-card-item image-popup" title="Project name here.">
+						<a href="{% static 'home/img/dept_4.png' %}" class="ubea-card-item image-popup" title="Department for Promotion of Industry and Internal Trade">
 							<figure>
 								<div class="overlay"><i class="ti-plus"></i></div>
-								<img src="{% static 'home/img/img_4.jpg' %}" alt="Image" class="img-responsive">
+								<img src="{% static 'home/img/dept_4.png' %}" alt="Department for Promotion of Industry and Internal Trade" class="img-responsive">
 							</figure>
 						</a>
 					</div>
 					<div class="col-md-4">
-						<a href="{% static 'home/img/img_5.jpg' %}" class="ubea-card-item image-popup" title="Project name here.">
+						<a href="{% static 'home/img/dept_5.jpg' %}" class="ubea-card-item image-popup" title="Ministry of Finance">
 							<figure>
 								<div class="overlay"><i class="ti-plus"></i></div>
-								<img src="{% static 'home/img/img_5.jpg' %}" alt="Image" class="img-responsive">
+								<img src="{% static 'home/img/dept_5.jpg' %}" alt="Ministry of Finance" class="img-responsive">
 							</figure>
 						</a>
 					</div>
 					<div class="col-md-4">
-						<a href="{% static 'home/img/img_6.jpg' %}" class="ubea-card-item image-popup" title="Project name here.">
+						<a href="{% static 'home/img/dept_6.jpg' %}" class="ubea-card-item image-popup" title="Department of Electronics and IT">
 							<figure>
 								<div class="overlay"><i class="ti-plus"></i></div>
-								<img src="{% static 'home/img/img_6.jpg' %}" alt="Image" class="img-responsive">
+								<img src="{% static 'home/img/dept_6.jpg' %}" alt="Department of Electronics and IT" class="img-responsive">
 							</figure>
 						</a>
 					</div>
@@ -277,6 +300,74 @@
 			</div>
 		</div>
 
+
+		<div class="ubea-section" id="ubea-portfolio" data-section="portfolio">
+			<div class="ubea-container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center ubea-heading">
+						<h2>Stakeholders</h2>
+						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+					</div>
+				</div>
+				<!--
+					<div class="col-md-4">
+						<a href="{% static 'home/img/img_6.jpg' %}" class="ubea-card-item image-popup" title="Project name here.">
+							<figure>
+								<div class="overlay"><i class="ti-plus"></i></div>
+								<img src="{% static 'home/img/img_6.jpg' %}" alt="Image" class="img-responsive">
+							</figure>
+						</a>
+					</div>  -->
+					<div class="col-md-4">
+						<a href="{% static 'home/img/img_1.png' %}" class="ubea-card-item image-popup" title="Associations">
+							<figure>
+								<div class="overlay"><i class="ti-plus"></i></div>
+								<img src="{% static 'home/img/img_1.png' %}" alt="Associations" class="img-responsive">
+							</figure>
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="{% static 'home/img/img_3.jpeg' %}" class="ubea-card-item image-popup" title="Investors">
+							<figure>
+								<div class="overlay"><i class="ti-plus"></i></div>
+								<img src="{% static 'home/img/img_3.jpeg' %}" alt="Investors" class="img-responsive">
+							</figure>
+						</a>
+					</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<a href="{% static 'home/img/img_2.png' %}" class="ubea-card-item image-popup" title="Startups">
+							<figure>
+								<div class="overlay"><i class="ti-plus"></i></div>
+								<img src="{% static 'home/img/img_2.png' %}" alt="Startups" class="img-responsive">
+							</figure>
+						</a>
+					</div>
+
+					<div class="col-md-4">
+						<a href="{% static 'home/img/img_4.png' %}" class="ubea-card-item image-popup" title="Unions">
+							<figure>
+								<div class="overlay"><i class="ti-plus"></i></div>
+								<img src="{% static 'home/img/img_4.png' %}" alt="Unions" class="img-responsive">
+							</figure>
+						</a>
+					</div>
+
+
+					<div class="col-md-4">
+						<a href="{% static 'home/img/a.png' %}" class="ubea-card-item image-popup" title="Government Agencies">
+							<figure>
+								<div class="overlay"><i class="ti-plus"></i></div>
+								<img src="{% static 'home/img/a.png' %}" alt="Government Agencies" class="img-responsive">
+							</figure>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+<!--
 		<div class="ubea-section" id="ubea-faq" data-section="faq">
 			<div class="ubea-container">
 				<div class="row">
@@ -322,7 +413,7 @@
 							</div>
 						</div>
 
-					</div>
+					</div>   
 					<div class="col-md-6">
 
 						<div class="ubea-accordion">
@@ -364,7 +455,7 @@
 			</div>
 		</div>
 
-	</div>
+	</div>  
 
     <div id="ubea-blog" data-section="about">
 		<div class="ubea-container">
@@ -375,16 +466,16 @@
 				</div>
 			</div>
 	    </div>
-    </div>
+    </div>  -->
 
-	<div id="ubea-contact" data-section="contact" class="ubea-cover ubea-cover-xs" style="background-image:url('{% static 'home/img/img_bg_2.jpg' %}');">
+	<div id="ubea-contact" data-section="contact" class="ubea-cover ubea-cover-xs" style="background-image:url('{% static 'home/img/img_bg_1.png' %}');">
 		<div class="overlay"></div>
 		<div class="ubea-container">
 			<div class="row text-center">
 				<div class="display-t">
 					<div class="display-tc">
 						<div class="col-md-12">
-							<h3>If you have inqueries please email us at <a>info@yourdomain.com</a></h3>
+							<h3>Contact Details : <a>abc@abc.com</a></h3>
 						</div>
 					</div>
 				</div>
@@ -398,9 +489,10 @@
 			<div class="row copyright">
 				<div class="col-md-12">
 					<p class="pull-left">
-						<small class="block">&copy; 2018 freshDesignweb. All Rights Reserved.</small>
+						<small class="block">&copy;Developed by PyProgramador</small>
 
 					</p>
+					<!--
 					<p class="pull-right">
 						<ul class="ubea-social-icons pull-right">
 							<li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -408,7 +500,7 @@
 							<li><a href="#"><i class="icon-linkedin"></i></a></li>
 							<li><a href="#"><i class="icon-dribbble"></i></a></li>
 						</ul>
-					</p>
+					</p>  -->
 				</div>
 			</div>
 

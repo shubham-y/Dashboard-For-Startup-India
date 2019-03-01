@@ -23,6 +23,8 @@ def dept_home(request):
     if 'dept_username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     else:
+        userid=request.session['dept_username']
+        deptname=DeptOfficer.objects.get(dept_loginid=userid)
         main=[]
         ap=ActionPoints.objects.all()
         for i in range(1,len(ap)+1):
@@ -46,7 +48,7 @@ def dept_home(request):
             k.append(e)
         m=zip(ap,j,k)
         main=zip(main,ap,j,k)
-        return render(request,'dept/home.html',{'ap':m,'d':d,'main':main})
+        return render(request,'dept/home.html',{'ap':m,'d':d,'main':main,'dept':dept})
 
 def view_upcoming_monitoring_meetings_action_dept(request):
     if 'dept_username' not in request.session:
