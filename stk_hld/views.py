@@ -331,7 +331,7 @@ def view_target_analysis_stk(request):
 
 
     mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-    return render(request, 'stk_hld/feedback_analysis.html', {'output': mscol2D.render(), 'chartTitle': 'Multiseries Column 2D Chart'})
+    return render(request, 'stk_hld/feedback_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
 
 
 
@@ -383,7 +383,7 @@ def view_achievement_analysis_stk(request):
 
 
             mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-            return render(request, 'stk_hld/feedback_analysis.html', {'output': mscol2D.render(), 'chartTitle': 'Multiseries Column 2D Chart'})
+            return render(request, 'stk_hld/feedback_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
 
 
 
@@ -471,7 +471,7 @@ def view_feedback_analysis_stk(request):
             data["value"] = value
             dataSource["data"].append(data)
         column2D = FusionCharts("column2d", "ex1" , "600", "400", "chart-1", "json", dataSource)
-        return  render(request, 'stk_hld/feedback_analysis.html', {'output' : column2D.render(), 'chartTitle': 'Simple Chart Using Array'})
+        return  render(request, 'stk_hld/feedback_analysis.html', {'output' : column2D.render(), 'chartTitle': ''})
 
 def view_ap_analysis_stk(request):
     if 'sh_username' not in request.session:
@@ -536,7 +536,7 @@ def view_ap_analysis_stk(request):
 
 
         mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-        return render(request, 'stk_hld/view_ap_analysis.html', {'output': mscol2D.render(), 'chartTitle': 'Multiseries Column 2D Chart'})
+        return render(request, 'stk_hld/view_ap_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
 
 
 def download_ap_sh(request):

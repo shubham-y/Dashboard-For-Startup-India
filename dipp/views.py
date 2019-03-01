@@ -469,7 +469,7 @@ def view_target_analysis(request):
 
 
     mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-    return render(request, 'dipp/view_ap_analysis.html', {'output': mscol2D.render(), 'chartTitle': 'Multiseries Column 2D Chart'})
+    return render(request, 'dipp/view_ap_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
 
 
 
@@ -520,7 +520,7 @@ def view_achievement_analysis(request):
 
 
     mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-    return render(request, 'dipp/view_ap_analysis.html', {'output': mscol2D.render(), 'chartTitle': 'Multiseries Column 2D Chart'})
+    return render(request, 'dipp/view_ap_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
 
 
 
@@ -561,7 +561,7 @@ def view_feedback_analysis(request):
         data["value"] = value
         dataSource["data"].append(data)
     column2D = FusionCharts("column2d", "ex1" , "600", "400", "chart-1", "json", dataSource)
-    return  render(request, 'dipp/feedback_analysis.html', {'output' : column2D.render(), 'chartTitle': 'Simple Chart Using Array'})
+    return  render(request, 'dipp/feedback_analysis.html', {'output' : column2D.render(), 'chartTitle': ''})
 
 
 def view_comparision_analysis(request):
@@ -840,7 +840,7 @@ def view_ap_analysis(request):
 
 
     mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-    return render(request, 'dipp/view_ap_analysis.html', {'output': mscol2D.render(), 'chartTitle': 'Multiseries Column 2D Chart'})
+    return render(request, 'dipp/view_ap_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
 
 
 def download_ap_dipp(request):
