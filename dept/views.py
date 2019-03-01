@@ -296,7 +296,7 @@ def view_target_analysis_dept(request):
             Delay=Notify.objects.filter(department=i.dept_name,type='Delay')
             d3={"value":(len(t_achieved))}
             d4={"value":(len(t_nachieved))}
-            print(d4)
+            #print(d4)
             t_a.append(d3)
             t_na.append(d4)
             c.append(category)
@@ -392,14 +392,14 @@ def view_comparision_analysis_dept(request):
     else:
         department = 'department_id__dept_name'
         d=Target.objects.values(department).distinct()
-        print(d)
+        #print(d)
         target=Target.objects.none()
         achievement=Notify.objects.none()
 
         if request.method=='POST':
             department1=request.POST.get('department1')
             department2=request.POST.get('department2')
-            print(department1)
+            #print(department1)
             # department1 = Q()
             # department2 = Q()
 
@@ -446,20 +446,10 @@ def view_feedback_analysis_dept(request):
         chartData = OrderedDict()
 
         for i in r:
-            print(i.dept_loginid_id)
-            print(i.score2)
-            print('hi')
             chartData[i.dept_loginid_id] = float(i.score2)
-        '''chartData["Venezuela"] = 10
-        chartData["Saudi"] = 260
-        chartData["Canada"] = 180
-        chartData["Iran"] = 140
-        chartData["Russia"] = 115
-        chartData["UAE"] = 100
-        chartData["US"] = 30'''
         dataSource["chart"] = chartConfig
         dataSource["data"] = []
-        print(chartData.items())
+        #print(chartData.items())
 
         for key, value in chartData.items():
             data = {}
