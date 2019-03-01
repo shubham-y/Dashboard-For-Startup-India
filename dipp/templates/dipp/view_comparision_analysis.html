@@ -1,129 +1,58 @@
 {% extends "dipp/base.html" %}
 {% load static %}
-
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 {% block content %}
 <div id="page-wrapper">
-  <div class="container-fluid ">
-    <div class="row  d-flex justify-content-center">
-      <div class="col-lg-12">
-        <h1 class="page-header text-center">Comparision</h1>
-      </div>
-    </div>
-  </div>
-    <!-- /.col-lg-12 -->
-    <!-- form -->
+<div class="container-fluid ">
 
-  <div id="target"></div>
+  <script type="text/javascript" src="{% static 'dept/fusioncharts/js/fusioncharts.js' %}"></script>
+  <script type="text/javascript" src="{% static 'dept/fusioncharts/js/themes/fusioncharts.theme.fusion.js' %}"></script>
 
-  <div id="achievement"></div>
+<div class="text-center">
+<!--body style="font-family:'Helvetica Neue', Arial; font-size: 16px;"-->
+	<h3>{{ chartTitle|safe }}</h3>
+  <div id="target">{{ output_target|safe }}</div>
+  
+  <h3>{{ chartTitle|safe }}</h3>
+  <div id="achievement">{{ output_achievement|safe }}</div>
 
+  <!-- start form-->
   <form role="form" method="POST" action="{% url 'view_comparision_analysis' %}">
-    {% csrf_token %}
-    <div class="form-group">
+      {% csrf_token %}
+      <div class="form-group">
+        <div class="row">
+          <div  class="form-group col-sm">
+            <label>Department Name(First)</label>
+            <select class="form-control" name="department1" style="width:60%">
+              {% for department in dept %}
+              <option value="{{department.dept_name}}" class="form-control">{{department.dept_name}}</option>
+              {% endfor %}
+  
+            </select>
+          </div>
+          <div class="form-group col-sm">
+            <label>Department Name(Second)</label>
+            <select class="form-control" name="department2" style="width:60%">
+              {% for department in dept %}
+              <option value="{{department.dept_name}}" class="form-control">{{department.dept_name}}</option>
+              {% endfor %}
+  
+            </select>
+          </div>
+        </div>
+      </div>
       <div class="row">
-        <div  class="form-group col-sm">
-          <label>Department Name(First)</label>
-          <select class="form-control" name="department1" style="width:60%">
-            {% for department in dept %}
-            <option value="{{department.dept_name}}" class="form-control">{{department.dept_name}}</option>
-            {% endfor %}
-
-          </select>
-        </div>
-        <div class="form-group col-sm">
-          <label>Department Name(Second)</label>
-          <select class="form-control" name="department2" style="width:60%">
-            {% for department in dept %}
-            <option value="{{department.dept_name}}" class="form-control">{{department.dept_name}}</option>
-            {% endfor %}
-
-          </select>
+      
+  <div class="col-sm-4"></div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-primary" style="width: 85%" align>Compare</button>
         </div>
       </div>
-    </div>
-    <div class="row">
-    
-<div class="col-sm-4"></div>
-      <div class="col-sm-2">
-        <button type="submit" class="btn btn-primary" style="width: 85%" align>Compare</button>
-      </div>
-    </div>
-  </form>
-    <!-- end form-->
+    </form>
+      <!-- end form-->
 </div>
-
-
-<script type="text/javascript" src="{% static 'dipp/js/dynamic_input.js' %}"></script>
-
-
-
+</div>
+</div>
 {% endblock %}
-{% block datatable_add %}
 
-<script src = "{% static 'dipp/highcharts/highcharts.js' %}"></script>
 
-<!-- <script src="https://code.highcharts.com/highcharts.src.js"></script> -->
 
-<script>
-  Highcharts.chart('target', {
-      chart: {
-          type: 'column'
-      },
-      title: {
-          text: 'Targets'
-      },
-      xAxis: {
-          categories: [
-            {% for entry in target %}'{{ entry.department_id__dept_name }} Department'{% if not forloop.last %}, {% endif %}{% endfor %}
-          ]
-      },
-      series: [{
-          name: 'Completed',
-          data: [
-            {% for entry in target %}{{ entry.completed_count }}{% if not forloop.last %}, {% endif %}{% endfor %}
-          ],
-          color: 'green'
-      }, {
-          name: 'Not Completed',
-          data: [
-            {% for entry in target %}{{ entry.not_completed_count }}{% if not forloop.last %}, {% endif %}{% endfor %}
-          ],
-          color: 'red'
-      }],
-      credits: {
-      enabled: false
-      },
-  });
-
-  Highcharts.chart('achievement', {
-      chart: {
-          type: 'column'
-      },
-      title: {
-          text: 'Achievement/Delays'
-      },
-      xAxis: {
-          categories: [
-            {% for entry in achievement %}'{{ entry.department }} Department'{% if not forloop.last %}, {% endif %}{% endfor %}
-          ]
-      },
-      series: [{
-          name: 'Achievement',
-          data: [
-            {% for entry in achievement %}{{ entry.completed_count }}{% if not forloop.last %}, {% endif %}{% endfor %}
-          ],
-          color: 'green'
-      }, {
-          name: 'Delay',
-          data: [
-            {% for entry in achievement %}{{ entry.not_completed_count }}{% if not forloop.last %}, {% endif %}{% endfor %}
-          ],
-          color: 'red'
-      }],
-      credits: {
-      enabled: false
-      },
-  });
-</script>
-{% endblock %}
