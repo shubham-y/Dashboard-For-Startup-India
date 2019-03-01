@@ -29,6 +29,8 @@ def dipp_home(request):
     if 'username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     else:
+        userid=request.session['username']
+        print(userid)
         main=[]
         a=ActionPoints.objects.all()
         for i in range(1,len(a)+1):
@@ -61,7 +63,7 @@ def dipp_home(request):
         m=zip(ap,j,k)
         print(main)
         main=zip(main,ap,j,k)
-        return render(request,'dipp/home.html',{'ap':m,'d':d,'main':main})
+        return render(request,'dipp/home.html',{'ap':m,'d':d,'main':main,'userid':userid})
 
 
 def add_dept(request):
