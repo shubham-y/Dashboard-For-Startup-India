@@ -572,14 +572,14 @@ def view_comparision_analysis(request):
     else:
         department = 'department_id__dept_name'
         d=DeptOfficer.objects.values('dept_name').distinct()
-        print(d)
+        #print(d)
         target=Target.objects.none()
         achievement=Notify.objects.none()
 
         if request.method=='POST':
             department1=request.POST.get('department1')
             department2=request.POST.get('department2')
-            print(department1)
+            #print(department1)
             # department1 = Q()
             # department2 = Q()
 
@@ -600,12 +600,12 @@ def view_comparision_analysis(request):
             .values('department') \
             .annotate(completed_count=Count('department', filter=Q(type='Achievement')),
                   not_completed_count=Count('department', filter=Q(type='Delay')))
-            print(target_1)
-            print(achievement_2)
+            #print(target_1)
+            #print(achievement_2)
             target = target_1.union(target_2)
             achievement = achievement_1.union(achievement_2)
-            print(target)
-            print(achievement)
+            #print(target)
+            #print(achievement)
 
         #print(len(target))
         return render(request, 'dipp/view_comparision_analysis.html', {'target':target,'achievement':achievement,'dept':d})
