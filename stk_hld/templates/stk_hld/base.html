@@ -24,6 +24,9 @@
 
   <link href="{% static 'dipp/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
+  <link href="{% static 'stk_hld/star-rating/css/star-rating.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'stk_hld/star-rating/css/glyphicon.css' %}">
+
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -32,6 +35,8 @@
 
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<script src="{% static 'stk_hld/star-rating/js/star-rating.js' %}"></script>
 
 
 
@@ -130,7 +135,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'view_feedback_analysis_stk' %}" aria-controls="collapsePages">
+        <a class="nav-link" href="{% url 'feedback_form' %}" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Feedback for dept</span>
         </a>
