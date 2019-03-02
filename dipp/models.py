@@ -56,3 +56,9 @@ class Target(models.Model):
     desc_of_target=models.CharField(max_length=400)
     report=models.CharField(max_length=400,default='not updated yet')
     actionpoint_no=models.ForeignKey(ActionPoints,on_delete=models.CASCADE)
+
+
+class NotificationDipp(models.Model):
+    when= models.DateField(default=now)
+    subject=models.CharField(max_length=40,default='Update')
+    type=models.CharField(max_length=400)
