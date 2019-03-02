@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>DPIIT - Dashboard</title>
 
 
   <!-- Custom fonts for this template-->
@@ -66,12 +66,12 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider my-0">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <!-- <div class="sidebar-heading">
         Update
-      </div>
+      </div> -->
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -88,6 +88,8 @@
         </div>
       </li>
 
+      <hr class="sidebar-divider my-0">
+
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -97,7 +99,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-            <div><a class="collapse-item block" href="{% url 'add_monitory_meeting' %}" >Add</a></div>
+            <div><a class="collapse-item" href="{% url 'add_monitory_meeting' %}" >Add</a></div>
             <div><a class="collapse-item" href="{% url 'view_upcoming_meetings_action' %}">Upcoming Meetings</a></div>
             <a class="collapse-item" href="{% url 'view_prev_meeting' %}">Previous Meetings</a>
 
@@ -106,12 +108,12 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider my-0">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <!-- <div class="sidebar-heading">
         Review
-      </div>
+      </div> -->
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -129,6 +131,8 @@
         </div>
       </li>
 
+      <hr class="sidebar-divider my-0">
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -142,6 +146,9 @@
           </div>
         </div>
       </li>
+
+      <hr class="sidebar-divider my-0">
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -155,6 +162,7 @@
           </div>
         </div>
       </li>
+      <hr class="sidebar-divider my-0">
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -171,13 +179,13 @@
         </div>
       </li>
 
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider my-0">
 
 
 
-      <div class="sidebar-heading">
+      <!-- <div class="sidebar-heading">
         Analysis
-      </div>
+      </div> -->
 
 
       <li class="nav-item">
@@ -186,12 +194,18 @@
           <span>Show Ranking</span>
         </a>
       </li>
+
+      <hr class="sidebar-divider my-0">
+
       <li class="nav-item">
         <a class="nav-link" href="{% url 'dept_summary' %}" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Dept Info</span>
         </a>
       </li>
+      
+      <hr class="sidebar-divider my-0">
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -217,7 +231,7 @@
 
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider">
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
