@@ -1,0 +1,17 @@
+// step 1. pull from dev branch to your branch
+git checkout dev
+git pull
+git checkout [your name]
+git merge dev
+git push
+// step 2. make changes, add features, etc
+git commit -m 'message'
+git push
+// always pull from dev branch before pushing to it, so if there are any conflicts, 
+// they would be resolved in your branch and not in dev branch
+// step 3. repeat step 1
+// step 4. ready to merge
+git checkout dev
+git merge [your name]
+git push
+git checkout [your name]
