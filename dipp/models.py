@@ -32,7 +32,7 @@ class StatusReport(models.Model):
 
 
 class ActionPoints(models.Model):
-    action_no=models.CharField(max_length=2,primary_key=True)
+    action_no=models.CharField(max_length=2,primary_key=True,default='NULL')
     action_name=models.CharField(max_length=100,default='NULL')
     action_objective=models.CharField(max_length=200,default='NULL')
     action_description=models.CharField(max_length=500,default='NULL')
@@ -41,11 +41,11 @@ class ActionPoints(models.Model):
 
 class Notify(models.Model):
     when= models.DateField(default=now )
-    subject=models.CharField(max_length=40)
+    subject=models.CharField(max_length=40,default='NULL')
     type=models.CharField(max_length=40)
     desc=models.CharField(max_length=400)
     department=models.CharField(max_length=40)#who notifies
-    actionpoint_no=models.ForeignKey(ActionPoints,on_delete=models.CASCADE)
+    actionpoint_no=models.ForeignKey(ActionPoints,on_delete=models.CASCADE,default='NULL')
 
 
 class Target(models.Model):
@@ -56,3 +56,9 @@ class Target(models.Model):
     desc_of_target=models.CharField(max_length=400)
     report=models.CharField(max_length=400,default='not updated yet')
     actionpoint_no=models.ForeignKey(ActionPoints,on_delete=models.CASCADE)
+
+
+class NotificationDipp(models.Model):
+    when= models.DateField(default=now)
+    subject=models.CharField(max_length=40,default='Update')
+    type=models.CharField(max_length=400)
