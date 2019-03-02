@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 
+
 # Create your models here.
 class DeptOfficer(models.Model):
     dept_loginid=models.CharField(max_length=40,primary_key=True)
@@ -8,6 +9,7 @@ class DeptOfficer(models.Model):
     dept_name=models.CharField(max_length=100)
     dept_email=models.CharField(max_length=40)
     dept_contact=models.CharField(max_length=40)
+
 
 class Feedback(models.Model):
     stakeholder=models.CharField(max_length=40)

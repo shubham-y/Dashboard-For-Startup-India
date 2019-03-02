@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
-from dipp.models import Monitoring_Meeting,Meeting,StatusReport,Notify,Target,ActionPoints,DippOfficer
+from dipp.models import Monitoring_Meeting,Meeting,StatusReport,Notify,Target,ActionPoints,DippOfficer,Dept_action_points
 from dept.models import DeptOfficer,Ranking
 from stk_hld.models import StakeHolder
 from django.core.mail import send_mail
@@ -70,7 +70,8 @@ def add_dept(request):
     if 'username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     else:
-        return render(request,'dipp/add_dept.html')
+        a=ActionPoints.objects.all()
+        return render(request,'dipp/add_dept.html',{'actionpoints':a})
 
 def add_sh(request):
     if 'username' not in request.session:
@@ -78,9 +79,14 @@ def add_sh(request):
     else:
         return render(request,'dipp/add_sh.html')
 
+def add_dept_action_new(request):
+    actionpoint_no = request.POST.getlist('actionpoint','NULL')
+    print(actionpoint_no)
+    return HttpResponseRedirect(reverse('add_dept'))
 
 def add_dept_action(request):
     dept_name=request.POST.get('dept_name','NULL')
+    actionpoint_no = request.POST.getlist('actionpoint','NULL')
     email=request.POST.get('email','NULL')
     contact=request.POST.get('contact','NULL')
     dept_id=request.POST.get('dept_id','NULL')
@@ -97,13 +103,18 @@ def add_dept_action(request):
         message = 'You will be looking after and updating about progress of'+ dept_name +'to us\nyour userid :' + dept_id +'\n your password : '+ dept_password +'.'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [email]
-        print('working')
+        # print('working')
         send_mail( subject, message, email_from, recipient_list , fail_silently=True)
         return HttpResponseRedirect(reverse('add_dept'))
 
     else:
         s=DeptOfficer(dept_loginid=dept_id,dept_email=email,dept_contact=contact,dept_password=dept_password,dept_name=dept_name)
         s.save()
+        for actionpoint in actionpoint_no:
+            a=Dept_action_points(department_id=dept_id,actionpoint_no_id=actionpoint)
+            a.save()
+        
+        
 
         if s.dept_loginid:
             r=Ranking(dept_loginid=s,score1='0',score2='0')
@@ -112,7 +123,7 @@ def add_dept_action(request):
             message = 'You will be looking after and updating about progress of'+ dept_name +'to us\nyour userid :' + dept_id +'\n your password : '+ dept_password +'.'
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [email]
-            print('working')
+            #print('working')
             send_mail( subject, message, email_from, recipient_list , fail_silently=True)
             return HttpResponseRedirect(reverse('add_dept'))
 
@@ -364,11 +375,17 @@ def add_target_action(request):
     date_of_assignment=datetime.now()
     target=request.POST.get('target','NULL')
     actionpoint=request.POST.get('actionpoint','NULL')
-    d=DeptOfficer.objects.get(dept_name=department)
+    d=DeptOfficer.objects.get(dept_loginid=department)
 
     t=Target(department=d,date_of_assignment=date_of_assignment,end_date=end_date,desc_of_target=target,actionpoint_no_id=actionpoint)
     t.save()
     return HttpResponseRedirect(reverse('add_target'))
+
+def load_action(request):
+    department=request.GET.get('dept')
+    a=Dept_action_points.objects.filter(department_id__exact=department)
+    return render(request, 'dipp/action_ajax.html', {'a': a})
+
 
 def view_past_target(request):
     if 'username' not in request.session:

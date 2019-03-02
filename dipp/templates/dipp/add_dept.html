@@ -3,6 +3,12 @@
 
 
 {% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
+
 <div id="page-wrapper">
 <div class="container container-fluid">
 <div class="row d-flex justify-content-center">
@@ -16,7 +22,16 @@
       {% csrf_token %}
           <div class="form-group" >
               <label for="name">Department Name</label>
-              <input class="form-control" placeholder="enter departent name" type="text" name="dept_name" required>
+              <input class="form-control" placeholder="enter department name" type="text" name="dept_name" required>
+          </div>
+          <div class="form-group">
+                <label >Action Points assigned:</label>
+          <select data-placeholder="Action Points..." multiple class="form-control chosen-select" name="actionpoint">
+                <option value=""></option>
+                {% for actionpoint in actionpoints %}
+                <option value="{{ actionpoint.action_no }}">{{ actionpoint.action_no }}. {{ actionpoint.action_name }}</option>
+                {% endfor %}
+              </select>
           </div>
           <div class="form-group" >
               <label>Email</label>
@@ -34,7 +49,7 @@
               <label>Department Password</label>
               <input required class="form-control" type="password" placeholder="enter password" name="dept_password">
           </div>
-          <div class="justify-content-center"><button type="submit" class="btn btn-primary">Add</button></div>
+          <div class="justify-content-center"><button type="submit" class="btn btn-block text-white align-middle bg-gradient-primary">Add</button></div>
     </form>
 
     <!-- end form-->
@@ -42,6 +57,14 @@
 </div>
 </div>
 </div>
+
+<script>
+
+$(".chosen-select").chosen({
+  no_results_text: "Oops, nothing found!"
+})
+
+</script>
 
 
 {% endblock %}

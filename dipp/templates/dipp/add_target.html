@@ -12,13 +12,13 @@
     <!-- /.col-lg-12 -->
     <!-- form -->
     <div class="col-sm-8 ">
-    <form role="form" method="post" action="{% url 'add_target_action' %}">
+    <form role="form" method="post" id="target_form" data-cities-url="{% url 'ajax_load_action' %}" action="{% url 'add_target_action' %}"> <!--action="{% url 'add_target_action' %}"-->
       {% csrf_token %}
       <div class="form-group" >
           <label>Department Name</label>
-          <select class="form-control" name="department"  >
+          <select class="form-control" name="department" id="dept" >
             {% for department in d %}
-            <option value="{{department.dept_name}}" class="form-control">department: {{department.dept_name}}</option>
+            <option value="{{department.dept_loginid}}" class="form-control">department: {{department.dept_name}}</option>
             {% endfor %}
 
           </select>
@@ -26,10 +26,7 @@
       </div>
       <div class="form-group">
         <label>Select relevant action point</label>
-        <select class="form-control" name="actionpoint"  >
-          {% for actionpoint in a %}
-          <option value="{{actionpoint.action_no}}" class="form-control">{{actionpoint.action_no}}:{{actionpoint.action_name}}</option>
-          {% endfor %}
+        <select class="form-control" name="actionpoint"  id="action" required>
 
         </select>
       </div>
@@ -53,6 +50,25 @@
 
 
 <script type="text/javascript" src="{% static 'dipp/js/dynamic_input.js' %}"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+  <script>
+    $("#dept").on('change', function() {
+      var url = $("#target_form").attr("data-cities-url");  // get the url of the `load_cities` view
+      var dept = $(this).val(); 
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'dept': dept       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#action").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+
 
 
 
