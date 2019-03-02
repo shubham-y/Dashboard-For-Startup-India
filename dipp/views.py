@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
-from dipp.models import Monitoring_Meeting,Meeting,StatusReport,Notify,Target,ActionPoints,DippOfficer
+from dipp.models import Monitoring_Meeting,Meeting,StatusReport,Notify,Target,ActionPoints,DippOfficer,NotificationDipp
 from dept.models import DeptOfficer,Ranking
 from stk_hld.models import StakeHolder
 from django.core.mail import send_mail
@@ -306,9 +306,16 @@ def add_status_report_action(request):
         i.date_of_upload=now
         i.save()
         print(i.upload_statusreport)
+
+        n=NotificationDipp(subject='Updated Status Report', type='StatusReport')
+        n.save()
     else:
         s=StatusReport(month=s_month,upload_statusreport=uploadedfileurl)
         s.save()
+
+        n=NotificationDipp(subject='Added Status Report', type='StatusReport')
+        n.save()
+
     return HttpResponseRedirect(reverse('add_status_report'))
 
 
@@ -808,8 +815,8 @@ def show_ranking(request):
                 print(i.dept_loginid.dept_loginid)
                 d=DeptOfficer.objects.get(dept_loginid=i.dept_loginid.dept_loginid)
                 print(d)
-                score2=float(i.score2)*10
-                score1=(float(i.score1)/max)*50
+                #score2=float(i.score2)*10
+                score1=(float(i.score1)/max)*100
                 total=score1+score2
                 l.append([d.dept_name,total])
                 l.sort(key=lambda x: x[1],reverse=True)
@@ -895,11 +902,11 @@ def view_ap_analysis(request):
 
 
 def download_ap_dipp(request):
-    if 'dept_username' not in request.session:
+    if 'username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     else:
         ap=ActionPoints.objects.all()
-        return render(request,'dept/download_ap_dipp.html',{'ap':ap})
+        return render(request,'dipp/download_ap_dipp.html',{'ap':ap})
 
 
 def dept_summary(request):

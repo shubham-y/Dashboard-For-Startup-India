@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
-from dipp.models import Monitoring_Meeting,Meeting,StatusReport,Notify,Target,ActionPoints
+from dipp.models import Monitoring_Meeting,Meeting,StatusReport,Notify,Target,ActionPoints,NotificationDipp
 from dept.models import DeptOfficer,Ranking,Feedback
 from collections import OrderedDict
 from django.db.models import Max,Count,Q
@@ -48,7 +48,10 @@ def dept_home(request):
             k.append(e)
         m=zip(ap,j,k)
         main=zip(main,ap,j,k)
-        return render(request,'dept/home.html',{'ap':m,'d':d,'main':main,'dept':dept})
+
+        notif = NotificationDipp.objects.all()
+        ln = len(notif)
+        return render(request,'dept/home.html',{'ap':m,'d':d,'main':main,'dept':dept,'notif':notif,'ln':ln})
 
 def view_upcoming_monitoring_meetings_action_dept(request):
     if 'dept_username' not in request.session:
