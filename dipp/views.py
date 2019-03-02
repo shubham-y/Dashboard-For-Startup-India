@@ -902,11 +902,11 @@ def view_ap_analysis(request):
 
 
 def download_ap_dipp(request):
-    if 'dept_username' not in request.session:
+    if 'username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     else:
         ap=ActionPoints.objects.all()
-        return render(request,'dept/download_ap_dipp.html',{'ap':ap})
+        return render(request,'dipp/download_ap_dipp.html',{'ap':ap})
 
 
 def dept_summary(request):
