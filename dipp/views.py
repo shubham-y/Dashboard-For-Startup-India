@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
-from dipp.models import Monitoring_Meeting,Meeting,StatusReport,Notify,Target,ActionPoints,DippOfficer,NotificationDipp
+from dipp.models import Monitoring_Meeting,Meeting,StatusReport,Notify,Target,ActionPoints,DippOfficer
 from dept.models import DeptOfficer,Ranking
 from stk_hld.models import StakeHolder
 from django.core.mail import send_mail
@@ -308,16 +308,9 @@ def add_status_report_action(request):
         i.date_of_upload=now
         i.save()
         print(i.upload_statusreport)
-
-        n=NotificationDipp(subject='Updated Status Report', type='StatusReport')
-        n.save()
     else:
         s=StatusReport(month=s_month,upload_statusreport=uploadedfileurl)
         s.save()
-
-        n=NotificationDipp(subject='Added Status Report', type='StatusReport')
-        n.save()
-
     return HttpResponseRedirect(reverse('add_status_report'))
 
 
