@@ -256,9 +256,17 @@
           </button>
 
           <!-- Topbar Search -->
-          <span class="input-group-btn">
-            <div id="google_translate_element"></div>
-          </span>
+
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+              <div class="input-group">
+                <div class="input-group-append">
+                    <div id="google_translate_element"></div>
+                </div>
+              </div>
+            </form>
+
+      <!-- <div id="google_translate_element"></div> -->
+          
 
 
           <!-- Topbar Navbar -->
@@ -266,19 +274,31 @@
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
+
               <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                  <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                      <div class="input-group-append">
+                          <div id="google_translate_element"></div>
+                      </div>
+                    
+                    </div>
+                  </form>
+                </div>
+
+
+
+              <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <div class="input-group custom-search-form">
 
-                                    <span class="input-group-btn">
                                         <div id="google_translate_element"></div>
-
-                                </span>
-                                </div>
-              </div>
+                
+                </div>
+              </div> -->
             </li>
             <div class="nav-item mx-1">
               <a class="nav-link" href="{% url 'download_ap' %}" target="_blank"><span class="text-primary">Download Action Points</span></a>
@@ -480,7 +500,10 @@
 
   <script type="text/javascript">
             function googleTranslateElementInit() {
-              new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+              new google.translate.TranslateElement({
+                pageLanguage: 'en', includedLanguages: 'en,hi,ur,gu,mr,pa,ta,te,bn',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
             }
   </script>
 
