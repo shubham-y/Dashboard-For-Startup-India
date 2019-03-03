@@ -36,7 +36,7 @@ def stk_hld_home(request):
         j=[]
         k=[]
         for i in range (0,len(ap)):
-            d='#id'+str(i)
+            f='#id'+str(i)
             e='id'+str(i)
             j.append(d)
             k.append(e)
