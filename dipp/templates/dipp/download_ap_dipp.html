@@ -45,6 +45,30 @@
       <h4 class="card-title">{{actionpoint.action_objective}}</h4>
       <br>
       <p class="card-text"> {{actionpoint.action_description}}</p>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+                <tr class="bg-gradient-primary text-white">
+                  <th>Department</th>
+                  <th>Target Assigned</th>
+                  <th>Target fulfilled</th>
+                  <th>Achievements</th>
+                  <th>Delay</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for i in m %}
+                <tr class="odd gradeX">
+                      <td>{{i.0}}</td>
+                      <td>{{i.1}}</td>
+                      <td>{{i.2}}</td>
+                      <td>{{i.3}}</td>
+                      <td>{{i.4}}</td>
+                    </tr>
+                  {% endfor %}
+             </tbody>
+        </table>
+        </div>
   </div>
   <div class="card-footer text-muted">
     {{actionpoint.update_time}}

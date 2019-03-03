@@ -33,8 +33,8 @@ def index(request):
             print(i.dept_loginid.dept_loginid)
             d=DeptOfficer.objects.get(dept_loginid=i.dept_loginid.dept_loginid)
             print(d)
-            #score2=float(i.score2)*10
-            score1=(float(i.score1)/max)*100
+            score2=float(i.score2)*10
+            score1=(float(i.score1)/max)*50
             total=score1+score2
             l.append([d.dept_name,total])
             l.sort(key=lambda x: x[1],reverse=True)
