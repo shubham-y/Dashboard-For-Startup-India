@@ -3,91 +3,80 @@
 
 
 {% block content %}
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1 class="page-header">STAKEHOLDER NAME</h1>
-                        </div>
-                        <br>
-                        <br>
-                        <!-- /.col-lg-12 -->
-                    </div>
+<div class="nav-item mx-1">
+    <a class="nav-link" href="{% url 'download_ap_dipp' %}" target="_blank"><span class="text-primary">Download Action Points</span></a>
+  </div>
 
-                    <div class="row">
-                          <!--collapse for action points-->
+          <br>
 
-                    <div class="col-lg-8">
-                      <h3>Action Points</h3>
-                      <br>
-                      <ul>
-                      {% for m,val,j,k in main %}
-                      <li>
-                          <div class="panel-group" id="accordion">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="{{j}}">
-                              {{val.action_name}}</a>
-                            </h4>
-                          </div>
-                          <div id="{{k}}" class="panel-collapse collapse">
-                            <div class="panel-body">
+        <div class="container">
+            <div class="row d-flex ">
 
-                              <h4>Objective:</h4>
-                              <label >{{val.action_objective}}</label>
-                              <h4>Description:</h4>
-                              <label >{{val.action_description}}     </label>
+                <div class="col-lg-8">
 
-                              <div class="row">
-                                  <div class="col-lg-12">
-                                      <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                               Targets assigned and achieved for this action point
-                                          </div>
-                                          <!-- /.panel-heading -->
-                                          <div class="panel-body">
-                                              <div class="table-responsive">
-                                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                      <thead>
-                                                          <tr>
-                                                            <th>Department</th>
-                                                            <th>Target Assigned</th>
-                                                            <th>Target fulfilled</th>
-                                                            <th>Achievements</th>
-                                                            <th>Dealy</th>
-                                                          </tr>
-                                                      </thead>
-                                                      <tbody>
-                                                        {% for i in m %}
-                                                          <tr class="odd gradeX">
-                                                                <td>{{i.0}}</td>
-                                                                <td>{{i.1}}</td>
-                                                                <td>{{i.2}}</td>
-                                                                <td>{{i.3}}</td>
-                                                                <td>{{i.4}}</td>
-                                                              </tr>
-                                                            {% endfor %}
-                                                       </tbody>
-                                                  </table>
-                                              </div>
-                                              </div>
-                                              </div>
-                                              </div>
-                                              </div>
-
-
-                              <label>Last Updated on {{val.update_time}}</label><br>
+                        <div class="d-flex justify-content-center">
+                                <h1 class="page-header">Action Points</h1>
                             </div>
-                          </div>
-                          </div>
-                        </div>
+            <br>
+         {% for m,val,j,k in main %}
+            <div id="accordion" class="rah">
+                <div class="card">
+                  <div class="card-header">
+                    <h5> {{val.action_no}} .  
+                      <a href="{{j}}" data-parent="#accordion" data-toggle="collapse">
+                        {{val.action_name}}
+                      </a>
+                    </h5>
+                  </div>
+          
+                  <div id="{{k}}" class="collapse">
+                    <div class="card-body">
+                        <h4>Objective:</h4>
+                        <p class="card-text">{{val.action_objective}}</p>
+                        <h4>Description:</h4>
+                        <p class="card-text" >{{val.action_description}}</p>
+                    
+                                
+                    <p class="card-text"><h5>Targets assigned and achieved for this action point</h5></p>
+                                
+                                
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <thead>
+                                                <tr class="bg-gradient-primary text-white">
+                                                  <th>Department</th>
+                                                  <th>Target Assigned</th>
+                                                  <th>Target fulfilled</th>
+                                                  <th>Achievements</th>
+                                                  <th>Delay</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                              {% for i in m %}
+                                                <tr class="odd gradeX">
+                                                      <td>{{i.0}}</td>
+                                                      <td>{{i.1}}</td>
+                                                      <td>{{i.2}}</td>
+                                                      <td>{{i.3}}</td>
+                                                      <td>{{i.4}}</td>
+                                                    </tr>
+                                                  {% endfor %}
+                                             </tbody>
+                                        </table>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+  
+                  </div>
+                </div>
 
-
-                  </li>
                 {% endfor %}
-                </ul>
-                    </div>
+            
+            
+        </div>
+
 
                       <!--notifications-->
                       <div class="col-lg-4">
