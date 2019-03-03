@@ -3,75 +3,144 @@
 
 
 {% block content %}
+<div class="container">
+    <div class="row d-flex ">
 
-            
-            
-   
-         <!--notifications-->
-          <div class="col-lg-4">
-                  <div class="card card-default">
-                      <div class="card-heading">
-                          <i class="fa fa-bell fa-fw"></i> Notifications card
-                      </div>
-                      <!-- /.card-heading -->
-                      <div class="card-body">
-                          <div class="list-group">
-                              <a href="#" class="list-group-item">
-                                  <i class="fa fa-comment fa-fw"></i> New Comment
-                                      <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                      </span>
-                              </a>
-                              <a href="#" class="list-group-item">
-                                  <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                      <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                      </span>
-                              </a>
-                              <a href="#" class="list-group-item">
-                                  <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                      <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                      </span>
-                              </a>
-                              <a href="#" class="list-group-item">
-                                  <i class="fa fa-tasks fa-fw"></i> New Task
-                                      <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                      </span>
-                              </a>
-                              <a href="#" class="list-group-item">
-                                  <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                      <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                      </span>
-                              </a>
-                              <a href="#" class="list-group-item">
-                                  <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                      <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                      </span>
-                              </a>
-                              <a href="#" class="list-group-item">
-                                  <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                      <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                      </span>
-                              </a>
-                              <a href="#" class="list-group-item">
-                                  <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                      <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                      </span>
-                              </a>
-                              <a href="#" class="list-group-item">
-                                  <i class="fa fa-money fa-fw"></i> Payment Received
-                                      <span class="pull-right text-muted small"><em>Yesterday</em>
-                                      </span>
-                              </a>
-                          </div>
-                          <!-- /.list-group -->
-                          <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                      </div>
-                      <!-- /.card-body -->
-                  </div>
+        <div class="col-lg-8">
 
-          <!-- end notificatioon-->
+            <div class="d-flex justify-content-center">
+                <h1 class="page-header">Action Points</h1>
+            </div>
+            <br>
+            {% for m,val,j,k in main %}
+            <div id="accordion" class="rah">
+                <div class="card">
+                    <div class="card-header">
+                        <h5> {{val.action_no}} .
+                            <a href="{{j}}" data-parent="#accordion" data-toggle="collapse">
+                                {{val.action_name}}
+                            </a>
+                        </h5>
+                    </div>
+
+                    <div id="{{k}}" class="collapse">
+                        <div class="card-body">
+                            <h4>Objective:</h4>
+                            <p class="card-text">{{val.action_objective}}</p>
+                            <h4>Description:</h4>
+                            <p class="card-text">{{val.action_description}}</p>
+
+
+                            <p class="card-text">
+                                <h5>Targets assigned and achieved for this action point</h5>
+                            </p>
+
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover"
+                                        id="dataTables-example">
+                                        <thead>
+                                            <tr class="bg-gradient-primary text-white">
+                                                <th>Department</th>
+                                                <th>Target Assigned</th>
+                                                <th>Target fulfilled</th>
+                                                <th>Achievements</th>
+                                                <th>Delay</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in m %}
+                                            <tr class="odd gradeX">
+                                                <td>{{i.0}}</td>
+                                                <td>{{i.1}}</td>
+                                                <td>{{i.2}}</td>
+                                                <td>{{i.3}}</td>
+                                                <td>{{i.4}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {% endfor %}
+
 
         </div>
-     
+
+
+
+        <!--notifications-->
+        <div class="col-lg-4">
+            <div class="card card-default">
+                <div class="card-heading">
+                    <i class="fa fa-bell fa-fw"></i> Notifications card
+                </div>
+                <!-- /.card-heading -->
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> New Comment
+                            <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                            <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-envelope fa-fw"></i> Message Sent
+                            <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-tasks fa-fw"></i> New Task
+                            <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                            <span class="pull-right text-muted small"><em>11:32 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+                            <span class="pull-right text-muted small"><em>11:13 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-warning fa-fw"></i> Server Not Responding
+                            <span class="pull-right text-muted small"><em>10:57 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
+                            <span class="pull-right text-muted small"><em>9:49 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-money fa-fw"></i> Payment Received
+                            <span class="pull-right text-muted small"><em>Yesterday</em>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /.list-group -->
+                    <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+            <!-- end notificatioon-->
+
+        </div>
+
     </div>
 
 
@@ -80,4 +149,4 @@
 
 
 
-  {% endblock %}
+    {% endblock %}
