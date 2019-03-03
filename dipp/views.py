@@ -412,6 +412,13 @@ def load_action(request):
     a=Dept_action_points.objects.filter(department_id__exact=department)
     return render(request, 'dipp/action_ajax.html', {'a': a})
 
+def load_target(request):
+    ap=request.GET.get('ap')
+    print(ap)
+    a=ActionPoints.objects.get(action_no=ap)
+    print(a.typee)
+    return render(request, 'dipp/target_ajax.html', {'a': a.typee})
+
 
 def view_past_target(request):
     if 'username' not in request.session:

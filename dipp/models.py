@@ -33,6 +33,7 @@ class StatusReport(models.Model):
 
 class ActionPoints(models.Model):
     action_no=models.CharField(max_length=2,primary_key=True,default='NULL')
+    typee=models.CharField(max_length=100,default='Non-Numeric')
     action_name=models.CharField(max_length=100,default='NULL')
     action_objective=models.CharField(max_length=200,default='NULL')
     action_description=models.CharField(max_length=500,default='NULL')
@@ -60,3 +61,8 @@ class Target(models.Model):
 class Dept_action_points(models.Model):
     department=models.ForeignKey(DeptOfficer,on_delete=models.CASCADE)
     actionpoint_no=models.ForeignKey(ActionPoints,on_delete=models.CASCADE)
+
+class Box(models.Model):
+    d_id=models.ForeignKey(DeptOfficer,on_delete=models.CASCADE)
+    a_id=models.ForeignKey(ActionPoints,on_delete=models.CASCADE)
+    box=models.CharField(max_length=400,default='not updated yet')

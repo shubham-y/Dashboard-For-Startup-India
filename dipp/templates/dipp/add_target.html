@@ -12,7 +12,7 @@
     <!-- /.col-lg-12 -->
     <!-- form -->
     <div class="col-sm-8 ">
-    <form role="form" method="post" id="target_form" data-cities-url="{% url 'ajax_load_action' %}" action="{% url 'add_target_action' %}"> <!--action="{% url 'add_target_action' %}"-->
+    <form role="form" method="post" id="target_form" data-cities-url="{% url 'ajax_load_action' %}" ap_type="{% url 'ajax_load_target' %}" action="{% url 'add_target_action' %}"> <!--action="{% url 'add_target_action' %}"-->
       {% csrf_token %}
       <div class="form-group" >
           <label>Department Name</label>
@@ -36,7 +36,7 @@
           </div>
           <div class="form-group" >
               <label>Enter Target</label>
-              <textarea class="form-control"   placeholder="enter target" type="text" min="{{date}}" required name="target" ></textarea>
+              <input class="form-control"  id="ap_target" placeholder="enter target" type="number" min="{{date}}" required name="target" ></input>
           </div>
 
 
@@ -63,6 +63,22 @@
         },
         success: function (data) {   // `data` is the return of the `load_cities` view function
           $("#action").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+
+    $("#action").on('change', function() {
+      var url = $("#target_form").attr("ap_type");  // get the url of the `load_cities` view
+      var ap = $(this).val(); 
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'ap': ap       // add the country id to the GET parameters
+        },
+        success: function (data) {  // `data` is the return of the `load_cities` view function
+          $('#ap_target').attr('type',data.trim());  // replace the contents of the city input with the data that came from the server
         }
       });
 

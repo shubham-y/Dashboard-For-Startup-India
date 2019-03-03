@@ -47,21 +47,42 @@
                                                     <tr class="bg-gradient-primary text-white">
                                                       <th>Department</th>
                                                       <th>Target Assigned</th>
-                                                      <th>Target fulfilled</th>
-                                                      <th>Achievements</th>
-                                                      <th>Delay</th>
+                                                      
+                                                      <th>Desc/val</th>
+                                                     <!-- <th>Achievements</th>
+                                                      <th>Delay</th> -->
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                   {% for i in m %}
                                                     <tr class="odd gradeX">
                                                           <td>{{i.0}}</td>
-                                                          <td>{{i.1}}</td>
-                                                          <td>{{i.2}}</td>
-                                                          <td>{{i.3}}</td>
-                                                          <td>{{i.4}}</td>
-                                                        </tr>
-                                                      {% endfor %}
+                                                          <td>
+                                                            
+                                                          {% for i1 in i.1 %}
+                                                          {{i1.desc_of_target}}
+                                                          
+                                                          {% endfor %}
+                                                          
+                                                          <td>
+                                                          {% for i1 in i.2 %}
+                                                          {{i1.report}}
+                                                          {% endfor %}
+                                                          </td>
+                                                          </tr>
+                                                          
+                                                    {% endfor %}
+                                                        <!----td>
+                                                            <ul>
+                                                            {% for i2 in i.2 %}
+                                                            <li>{{i2.desc_of_target}}</li>
+                                                            {% endfor %}
+                                                            </ul>
+                                                            </td>
+                                                            <td>0</td-->
+                                                            <tr>
+                                                
+                                                      
                                                  </tbody>
                                             </table>
                                         </div>

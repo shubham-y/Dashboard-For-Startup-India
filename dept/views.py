@@ -33,12 +33,11 @@ def dept_home(request):
             d=DeptOfficer.objects.all().distinct()
             l=[]
             for dept in d:
-                count=(Target.objects.filter(department_id=dept.dept_loginid,actionpoint_no_id=i).count())
-                count_complete=(Target.objects.filter(department_id=dept.dept_loginid,actionpoint_no_id=i,status='1').count())
-                Achievement=(Notify.objects.filter(department=dept.dept_name,actionpoint_no_id=i,type='Achievement').count())
-                Delay=(Notify.objects.filter(department=dept.dept_name,actionpoint_no_id=i,type='Delay').count())
-                l.append([dept.dept_name,count,count_complete,Achievement,Delay])
+                count=(Target.objects.filter(department_id=dept.dept_loginid,actionpoint_no_id=i))
+                count_complete=(Target.objects.filter(department_id=dept.dept_loginid,actionpoint_no_id=i))
+                l.append([dept.dept_name,count,count_complete])
             main.append(l)
+        print(main)
         ap=ActionPoints.objects.all()
         j=[]
         k=[]
@@ -50,30 +49,31 @@ def dept_home(request):
             k.append(e)
         m=zip(ap,j,k)
         main=zip(main,ap,j,k)
+        print(main)
         r=Ranking.objects.all()
         max=Ranking.objects.all().aggregate(Max('score1'))
         max=int(max['score1__max'])
-        print(max)
-        print(type(max))
+        #print(max)
+        #print(type(max))
         #print(max['score1__max'])
-        print(r)
+        #print(r)
         '''for i in r:
             print(i.score1)'''
         l=[]
         if max!=0:
             for i in r:
-                print(i.dept_loginid)
-                print('hiii')
-                print(i.dept_loginid.dept_loginid)
+                #print(i.dept_loginid)
+                #print('hiii')
+                #print(i.dept_loginid.dept_loginid)
                 d=DeptOfficer.objects.get(dept_loginid=i.dept_loginid.dept_loginid)
-                print(d)
+                #print(d)
                 score2=float(i.score2)*10
                 score1=(float(i.score1)/max)*50
                 total=score1+score2
                 l.append([d.dept_name,total])
                 l.sort(key=lambda x: x[1],reverse=True)
                 l=l[0:3]
-                print(l)
+                #print(l)
         return render(request,'dept/home.html',{'ap':m,'d':d,'main':main,'dept':dept,'l':l})
 
 def view_upcoming_monitoring_meetings_action_dept(request):
@@ -197,8 +197,12 @@ def view_notification_dept(request):
         return HttpResponseRedirect(reverse('login'))
 
     else:
+        name=request.session['dept_username']
+        print(name)
+        s=DeptOfficer.objects.get(dept_loginid=name)
+        print(s)
         #s=StatusReport.objects.all().filter(month__gte= now).order_by('meeting_date')
-        n=Notify.objects.all().order_by('-when')
+        n=Notify.objects.filter(department=s.dept_name)
         return render(request,'dept/view_notification.html',{'n':n})
 
 
@@ -230,6 +234,7 @@ def view_current_target_dept(request):
         now = timezone.now()
         j=[]
         t=Target.objects.all().filter(end_date__gte= now,department=f).order_by('end_date')
+        
         k=[]
         for i in range(0,len(t)):
             d='#id'+str(i)
@@ -243,6 +248,9 @@ def update_status_current_target(request,tid):
     if 'dept_username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     t=Target.objects.all().get(id=tid)
+    #a_id=t.actionpoint_no_id
+    #ap_id=ActionPoints.objects.get(action_no=a_id)
+    print(t)
     #print(t.department_id)
     dept=t.department_id
     d=DeptOfficer.objects.get(dept_loginid=dept)
@@ -359,7 +367,7 @@ def view_target_analysis_dept(request):
 
 
         mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-        return render(request, 'dept/target_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
+        return render(request, 'dept/view_target_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
 
 
 
@@ -409,13 +417,13 @@ def view_achievement_analysis_dept(request):
 
 
         mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-        return render(request, 'dept/achievement_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
+        return render(request, 'dept/view_achievement_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
 
 
 
 
 def view_comparision_analysis_dept(request):
-    if 'username' not in request.session:
+    if 'dept_username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     else:
         dept = []

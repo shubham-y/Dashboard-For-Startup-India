@@ -27,6 +27,7 @@ urlpatterns=[
     path('add_target/',views.add_target,name='add_target'),
     path('add_target_action/',views.add_target_action,name='add_target_action'),
     path('ajax/load_action/', views.load_action, name='ajax_load_action'),
+    path('ajax/load_target/', views.load_target, name='ajax_load_target'),
     # path('add_action_point/',views.add_action_point,name='add_action_point'),
     path('view_past_target/',views.view_past_target,name='view_past_target'),
     path('view_current_target/',views.view_current_target,name='view_current_target'),
