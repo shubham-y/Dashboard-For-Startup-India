@@ -418,7 +418,7 @@ def view_achievement_analysis_stk(request):
 
 
 def view_comparision_analysis_stk(request):
-    if 'username' not in request.session:
+    if 'sh_username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     else:
         dept = []
@@ -618,7 +618,7 @@ def view_ap_analysis_stk(request):
 
 
 def download_ap_sh(request):
-    if 'dept_username' not in request.session:
+    if 'sh_username' not in request.session:
         return HttpResponseRedirect(reverse('login'))
     else:
         ap=ActionPoints.objects.all()
@@ -626,7 +626,7 @@ def download_ap_sh(request):
 
 
 def view_dept_summary(request):
-        if 'username' not in request.session:
+        if 'sh_username' not in request.session:
             return HttpResponseRedirect(reverse('login'))
         else:
             d=DeptOfficer.objects.all()
