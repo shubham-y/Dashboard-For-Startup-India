@@ -334,7 +334,7 @@ def view_target_analysis_stk(request):
 
 
     mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-    return render(request, 'stk_hld/feedback_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
+    return render(request, 'stk_hld/view_target_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
 
 
 
@@ -342,22 +342,128 @@ def view_target_analysis_stk(request):
 
 def view_achievement_analysis_stk(request):
 
-            dept=DeptOfficer.objects.all()
-            c=[]
-            d=[]
-            a=[]
+    dept=DeptOfficer.objects.all()
+    c=[]
+    d=[]
+    a=[]
+    for i in dept:
+        category={"label":i.dept_name}
+        Achievements=Notify.objects.filter(department=i.dept_name,type='Achievement')
+        Delay=Notify.objects.filter(department=i.dept_name,type='Delay')
+        d3={"value":(len(Achievements))}
+        d4={"value":(len(Delay))}
+        a.append(d3)
+        d.append(d4)
+        c.append(category)
+
+#jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+    p={
+            "chart": {
+            "caption": "Achievement vs delay",
+            "xAxisName": "department",
+            "yAxisName" : "total number",
+            "formatnumberscale": "1",
+            "drawCrossLine":"1",
+            "plotToolText" : "<b>$dataValue</b> apps on $seriesName in $label",
+            "theme": "fusion"
+            },
+
+
+            "categories": [{
+            "category": c
+            }],
+            "dataset": [ {
+            "seriesname": "Achievement",
+            "data":  a
+            }, {
+            "seriesname": "Delay",
+            "data":  d
+            }]
+            }
+
+
+    p1=json.dumps(p)
+
+
+    mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
+    return render(request, 'stk_hld/view_achievement_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
+
+
+
+
+
+
+def view_comparision_analysis_stk(request):
+    if 'username' not in request.session:
+        return HttpResponseRedirect(reverse('login'))
+    else:
+        dept = []
+        t_a=[]
+        t_na=[]
+        delay=[]
+        achievement=[]
+        category_target = []
+        category_achievement = []
+        d=DeptOfficer.objects.all()
+        if request.method=='POST':
+            department1=request.POST.get('department1')
+            department2=request.POST.get('department2')
+            d1 = DeptOfficer.objects.get(dept_name=department1)
+            d2 = DeptOfficer.objects.get(dept_name=department2)
+            dept.append(d1)
+            dept.append(d2)
+            for i in dept:
+                category={"label":i.dept_name}
+                t_achieved=Target.objects.filter(department_id=i.dept_loginid,status='1')
+                t_nachieved=Target.objects.filter(department_id=i.dept_loginid,status='0')
+                Delay=Notify.objects.filter(department=i.dept_name,type='Delay')
+                d3={"value":(len(t_achieved))}
+                d4={"value":(len(t_nachieved))}
+                #print(d4)
+                t_a.append(d3)
+                t_na.append(d4)
+                category_target.append(category)
+            
+            target={
+                    "chart": {
+                    "caption": "Target (Completed vs pending)",
+                    "xAxisName": "department",
+                    "yAxisName" : "total number",
+                    "formatnumberscale": "1",
+                    "drawCrossLine":"1",
+                    "plotToolText" : "<b>$dataValue</b> apps on $seriesName in $label",
+                    "theme": "fusion"
+                    },
+
+
+                    "categories": [{
+                    "category": category_target
+                    }],
+                    "dataset": [ {
+                    "seriesname": "Target Achieved",
+                    "data":  t_a
+                    }, {
+                    "seriesname": "Target Not Achieved",
+                    "data":  t_na
+                    }]
+                    }
+
+
+
+            mscol2D_target = FusionCharts("mscolumn2d", "ex1" , "600", "400", "target", "json",json.dumps(target))
+
             for i in dept:
                 category={"label":i.dept_name}
                 Achievements=Notify.objects.filter(department=i.dept_name,type='Achievement')
                 Delay=Notify.objects.filter(department=i.dept_name,type='Delay')
                 d3={"value":(len(Achievements))}
                 d4={"value":(len(Delay))}
-                a.append(d3)
-                d.append(d4)
-                c.append(category)
+                achievement.append(d3)
+                delay.append(d4)
+                category_achievement.append(category)
 
-        #jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-            p={
+    #jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+            achievement={
                     "chart": {
                     "caption": "Achievement vs delay",
                     "xAxisName": "department",
@@ -370,70 +476,22 @@ def view_achievement_analysis_stk(request):
 
 
                     "categories": [{
-                    "category": c
+                    "category": category_achievement
                     }],
                     "dataset": [ {
                     "seriesname": "Achievement",
-                    "data":  a
+                    "data":  achievement
                     }, {
                     "seriesname": "Delay",
-                    "data":  d
+                    "data":  delay
                     }]
                     }
 
 
-            p1=json.dumps(p)
-
-
-            mscol2D = FusionCharts("mscolumn2d", "ex1" , "600", "400", "chart-1", "json",json.dumps(p))
-            return render(request, 'stk_hld/feedback_analysis.html', {'output': mscol2D.render(), 'chartTitle': ''})
-
-
-
-
-
-
-def view_comparision_analysis_stk(request):
-    if 'sh_username' not in request.session:
-        return HttpResponseRedirect(reverse('login'))
-    else:
-        department = 'department_id__dept_name'
-        d=Target.objects.values(department).distinct()
-        print(d)
-        target=Target.objects.none()
-        achievement=Notify.objects.none()
-
-        if request.method=='POST':
-            department1=request.POST.get('department1')
-            department2=request.POST.get('department2')
-            print(department1)
-            # department1 = Q()
-            # department2 = Q()
-
-            target_1 = Target.objects.filter(department_id__dept_name__exact=department1) \
-            .values(department) \
-            .annotate(completed_count=Count(department, filter=Q(status=1)), \
-                not_completed_count=Count(department, filter=Q(status=0)))
-            target_2 = Target.objects.filter(department_id__dept_name__exact=department2) \
-            .values(department) \
-            .annotate(completed_count=Count(department, filter=Q(status=1)), \
-                not_completed_count=Count(department, filter=Q(status=0)))
-
-            achievement_1 = Notify.objects.filter(department__exact=department1) \
-            .values('department') \
-            .annotate(completed_count=Count('department', filter=Q(type='Achievement')),
-                  not_completed_count=Count('department', filter=Q(type='Delay')))
-            achievement_2 = Notify.objects.filter(department__exact=department2) \
-            .values('department') \
-            .annotate(completed_count=Count('department', filter=Q(type='Achievement')),
-                  not_completed_count=Count('department', filter=Q(type='Delay')))
-            print(target_1)
-            print(achievement_2)
-            target = target_1.union(target_2)
-            achievement = achievement_1.union(achievement_2)
-
-        #print(len(target))
-        return render(request, 'stk_hld/view_comparision_analysis.html', {'target':target,'achievement':achievement,'dept':d})
+            mscol2D_achievement = FusionCharts("mscolumn2d", "ex2" , "600", "400", "achievement", "json",json.dumps(achievement))
+            return render(request, 'stk_hld/view_comparision_analysis.html', {'output_target': mscol2D_target.render(), 'output_achievement': mscol2D_achievement.render(), 'chartTitle': '', 'dept':d})
+        
+        return render(request, 'stk_hld/view_comparision_analysis.html', {'dept':d})
 
 def view_feedback_analysis_stk(request):
     if 'sh_username' not in request.session:
@@ -457,13 +515,6 @@ def view_feedback_analysis_stk(request):
             print(i.score2)
             print('hi')
             chartData[i.dept_loginid_id] = float(i.score2)
-        '''chartData["Venezuela"] = 10
-        chartData["Saudi"] = 260
-        chartData["Canada"] = 180
-        chartData["Iran"] = 140
-        chartData["Russia"] = 115
-        chartData["UAE"] = 100
-        chartData["US"] = 30'''
         dataSource["chart"] = chartConfig
         dataSource["data"] = []
         print(chartData.items())

@@ -15,14 +15,18 @@
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'dipp/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'stk_hld/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    
   <!-- Custom styles for this template-->
   <link href="{% static 'dipp/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this page -->
 
   <link href="{% static 'dipp/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+  <link href="{% static 'stk_hld/star-rating/css/star-rating.css' %}" rel="stylesheet" type="text/css">
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -130,7 +134,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'view_feedback_analysis_stk' %}" aria-controls="collapsePages">
+        <a class="nav-link" href="{% url 'feedback_form' %}" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Feedback for dept</span>
         </a>
@@ -217,14 +221,14 @@
             <div class="nav-item mx-1">
               <a class="nav-link" href="{% url 'download_ap' %}" target="_blank"><span class="text-primary">Download Action Points</span></a>
             </div>
-            <!-- Nav Item - Alerts -->
+            <!-- Nav Item - Alerts
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
+                Counter - Alerts
                 <span class="badge badge-danger badge-counter">3+</span>
               </a>
-              <!-- Dropdown - Alerts -->
+              Dropdown - Alerts
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
@@ -266,14 +270,14 @@
               </div>
             </li>
 
-            <!-- Nav Item - Messages -->
+            Nav Item - Messages
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
+                Counter - Messages
                 <span class="badge badge-danger badge-counter">7</span>
               </a>
-              <!-- Dropdown - Messages -->
+              Dropdown - Messages
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
@@ -320,7 +324,7 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
-            </li>
+            </li> -->
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -347,7 +351,7 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <!-- <div class="container-fluid"> -->
 
 
           <!-- main content  -->
@@ -406,6 +410,7 @@
   <!-- Page level plugins -->
   <script src="{% static 'dipp/vendor/datatables/jquery.dataTables.min.js' %}"></script>
   <script src="{% static 'dipp/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+  
 
   <!-- Page level custom scripts -->
   <script src="{% static 'dipp/js/demo/datatables-demo.js' %}"></script>
@@ -417,7 +422,8 @@
   </script>
 
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+  <script src="{% static 'stk_hld/star-rating/js/star-rating.min.js' %}"></script>
+  
   {% block datatable_add %}
 
   {% endblock %}
