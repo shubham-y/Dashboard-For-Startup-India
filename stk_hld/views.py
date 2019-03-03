@@ -42,7 +42,31 @@ def stk_hld_home(request):
             k.append(e)
         m=zip(ap,j,k)
         main=zip(main,ap,j,k)
-        return render(request,'stk_hld/home.html',{'ap':m,'d':d,'main':main,'shname':shname})
+        r=Ranking.objects.all()
+        max=Ranking.objects.all().aggregate(Max('score1'))
+        max=int(max['score1__max'])
+        print(max)
+        print(type(max))
+        #print(max['score1__max'])
+        print(r)
+        '''for i in r:
+            print(i.score1)'''
+        l=[]
+        if max!=0:
+            for i in r:
+                print(i.dept_loginid)
+                print('hiii')
+                print(i.dept_loginid.dept_loginid)
+                d=DeptOfficer.objects.get(dept_loginid=i.dept_loginid.dept_loginid)
+                print(d)
+                score2=float(i.score2)*10
+                score1=(float(i.score1)/max)*50
+                total=score1+score2
+                l.append([d.dept_name,total])
+                l.sort(key=lambda x: x[1],reverse=True)
+                l=l[0:3]
+                print(l)
+        return render(request,'stk_hld/home.html',{'ap':m,'d':d,'main':main,'shname':shname,'l':l})
 
 def view_monitoring_minutes(request):
 	if 'sh_username' not in request.session:
