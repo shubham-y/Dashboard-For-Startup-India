@@ -17,6 +17,7 @@
       <div class="form-group" >
           <label>Department Name</label>
           <select class="form-control" name="department" id="dept" >
+            <option value="" class="form-control"></option>
             {% for department in d %}
             <option value="{{department.dept_loginid}}" class="form-control">department: {{department.dept_name}}</option>
             {% endfor %}
