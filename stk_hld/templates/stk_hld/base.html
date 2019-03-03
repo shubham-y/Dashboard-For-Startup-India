@@ -15,13 +15,13 @@
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'dipp/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'stk_hld/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     
   <!-- Custom styles for this template-->
   <link href="{% static 'dipp/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this page -->
+  <link href="{% static 'dipp/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -62,12 +62,12 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider my-0">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <!-- <div class="sidebar-heading">
         Update
-      </div>
+      </div> -->
 
       <!-- Nav Item - Pages Collapse Menu -->
 
@@ -91,12 +91,12 @@
 
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider my-0">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <!-- <div class="sidebar-heading">
         Review
-      </div>
+      </div> -->
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -125,6 +125,8 @@
           <span>Show Ranking</span>
         </a>
       </li>
+
+      <hr class="sidebar-divider my-0">
       <!-- <li class="nav-item">
         <a class="nav-link" href="{% url 'feedback_form' %}" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -137,6 +139,7 @@
           <span>Dept Info</span>
         </a>
       </li>
+      <hr class="sidebar-divider my-0">
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -161,7 +164,7 @@
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
+      <div class="text-center d-none d-md-inline mb-1">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
 
@@ -214,7 +217,7 @@
             <div class="nav-item mx-1">
               <a class="nav-link" href="{% url 'download_ap' %}" target="_blank"><span class="text-primary">Download Action Points</span></a>
             </div>
-            <!-- Nav Item - Alerts
+             Nav Item - Alerts
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>

@@ -40,10 +40,10 @@
 </head>
 
 <body id="page-top">
-
+    <div id="mymain">
   <!-- Page Wrapper -->
   <div id="wrapper">
-
+      
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -232,7 +232,7 @@
 
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider ">
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -267,7 +267,15 @@
             </form>
 
       <!-- <div id="google_translate_element"></div> -->
-          
+
+
+<!--           
+            <a class="d-flex align-items-center" href="javascript:void(0);" onclick="changemysize(16);">S </a>
+            <a class=" d-flex align-items-center" href="javascript:void(0);" onclick="changemysize(20);">M </a>
+            <a class=" d-flex align-items-center" href="javascript:void(0);" onclick="changemysize(25);">L </a>
+           -->
+    
+
 
 
           <!-- Topbar Navbar -->
@@ -517,7 +525,15 @@
 
   {% endblock %}
 
-
+</div>
 </body>
+
+
+<script type="text/javascript">
+function changemysize(myvalue) {
+    var div = document.getElementById("mymain");
+    div.style.fontSize = myvalue + "px";   
+}
+</script>
 
 </html>
