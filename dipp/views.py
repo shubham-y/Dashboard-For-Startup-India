@@ -401,13 +401,13 @@ def add_target_action(request):
     actionpoint=request.POST.get('actionpoint','NULL')
     d=DeptOfficer.objects.get(dept_loginid=department)
 
-    t=Target(department=d,date_of_assignment=date_of_assignment,end_date=end_date,desc_of_target=target,actionpoint_no=actionpoint)
+    t=Target(department=d,date_of_assignment=date_of_assignment,end_date=end_date,desc_of_target=target,actionpoint_no_id=actionpoint)
     t.save()
     return HttpResponseRedirect(reverse('add_target'))
 
 def load_action(request):
     department=request.GET.get('dept')
-    a=Dept_action_points.objects.filter(department_id=department)
+    a=Dept_action_points.objects.filter(department_id__exact=department)
     return render(request, 'dipp/action_ajax.html', {'a': a})
 
 
