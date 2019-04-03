@@ -7,15 +7,15 @@
     <div class="row d-flex ">
 
         <div class="col-lg-8">
-
-            <div class="d-flex justify-content-center">
-                <h1 class="page-header">Action Points</h1>
+            <div class="card">
+            <div class="card-title d-flex justify-content-center ">
+                <h1 class="">Action Points</h1>
             </div>
-            <br>
+            
             {% for m,val,j,k in main %}
-            <div id="accordion" class="rah">
-                <div class="card">
-                    <div class="card-header">
+            <div id="accordion" class="card-body card-outline-dark my-0 rah py-1">
+                <div class="card my-0 p-0">
+                    <div class="card-header my-0">
                         <h5> {{val.action_no}} .
                             <a href="{{j}}" data-parent="#accordion" data-toggle="collapse">
                                 {{val.action_name}}
@@ -45,18 +45,28 @@
                                                 <th>Department</th>
                                                 <th>Target Assigned</th>
                                                 <th>Target fulfilled</th>
-                                                <th>Achievements</th>
-                                                <th>Delay</th>
+                                                
+                                                <th>Description</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {% for i in m %}
                                             <tr class="odd gradeX">
+                                                <!----td>{{i.0}}</td-->
+                                                <!----td>{{i.1}}</td-->
                                                 <td>{{i.0}}</td>
-                                                <td>{{i.1}}</td>
-                                                <td>{{i.2}}</td>
-                                                <td>{{i.3}}</td>
-                                                <td>{{i.4}}</td>
+
+                                                <td>
+                                                    
+                                                    <ul>
+                                                        {% for i1 in i.1 %}
+                                                           <li>{{i1.status}}</li> 
+                                                        {% endfor %}        
+                                                    </ul>
+                                                </td>
+                                                
+                                                
+                                                <td>0</td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>
@@ -71,16 +81,16 @@
 
             {% endfor %}
 
-
+<div class="card-footer text-center"><span class="text-muted">Updated</span></div>
         </div>
-
+    </div>
 
 
         <!--notifications-->
         <div class="col-lg-4">
             <div class="card card-default">
-                <div class="card-heading">
-                    <i class="fa fa-bell fa-fw"></i> Top three Departments
+                <div class="card-heading d-flex justify-content-center">
+                    <h5> Top three Departments</h5>
                 </div>
                 <!-- /.card-heading -->
                 <div class="card-body">

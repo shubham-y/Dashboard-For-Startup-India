@@ -41,13 +41,11 @@ def dipp_home(request):
             print(d)
             l=[]
             for dept in d:
-
                 print(dept.dept_loginid)
-                count=(Target.objects.filter(department_id=dept.dept_loginid,actionpoint_no_id=i).count())
-                count_complete=(Target.objects.filter(department_id=dept.dept_loginid,actionpoint_no_id=i,status='1').count())
-                Achievement=(Notify.objects.filter(department=dept.dept_name,actionpoint_no_id=i,type='Achievement').count())
-                Delay=(Notify.objects.filter(department=dept.dept_name,actionpoint_no_id=i,type='Delay').count())
-                l.append([dept.dept_name,count,count_complete,Achievement,Delay])
+                Target_assigned=(Target.objects.filter(department_id=dept.dept_loginid,actionpoint_no_id=i))
+                Target_completed=(Target.objects.filter(department_id=dept.dept_loginid,actionpoint_no_id=i,status='1'))
+                
+                l.append([dept.dept_name,Target_assigned,Target_completed])
                 #count = Count(dept.department_id,filter=Q(actionpoint_no_id=1))
                 #print(count)
 
@@ -63,7 +61,7 @@ def dipp_home(request):
             j.append(d)
             k.append(e)
         m=zip(ap,j,k)
-        print(main)
+
         main=zip(main,ap,j,k)
         r=Ranking.objects.all()
         max=Ranking.objects.all().aggregate(Max('score1'))
@@ -77,9 +75,7 @@ def dipp_home(request):
         l=[]
         if max!=0:
             for i in r:
-                print(i.dept_loginid)
-                print('hiii')
-                print(i.dept_loginid.dept_loginid)
+                
                 d=DeptOfficer.objects.get(dept_loginid=i.dept_loginid.dept_loginid)
                 print(d)
                 score2=float(i.score2)*10
@@ -89,6 +85,8 @@ def dipp_home(request):
                 l.sort(key=lambda x: x[1],reverse=True)
                 l=l[0:3]
                 print(l)
+                for  m,val,j,k in main:
+                    print(m)
         return render(request,'dipp/home.html',{'ap':m,'d':d,'main':main,'userid':userid,'l':l})
 
 
