@@ -35,10 +35,11 @@ def stk_hld_home(request):
         ap=ActionPoints.objects.all()
         j=[]
         k=[]
+        f=0
         for i in range (0,len(ap)):
             f='#id'+str(i)
             e='id'+str(i)
-            j.append(d)
+            j.append(f)
             k.append(e)
         m=zip(ap,j,k)
         main=zip(main,ap,j,k)
