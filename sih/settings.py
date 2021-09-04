@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'abcd'
 
 # ALLOWED_HOSTS = []
 
@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'sih.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        'postgres://liylsmoqmvsacv:fa65c2a1fb9e09a078e97bb6c3efc64f1fa971616447538f9d7b18745e8341c5@ec2-107-20-24-247.compute-1.amazonaws.com:5432/dekkrg3d6jeig3'
     )
 }
 
