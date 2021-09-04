@@ -5,7 +5,7 @@ Django==2.1.5
 django-heroku==0.3.1
 gunicorn==20.0.4
 idna==2.8
-mysqlclient==1.3.12
+mysqlclient
 Pillow==7.1.1
 psycopg2==2.8.5
 pytesseract==0.3.2
